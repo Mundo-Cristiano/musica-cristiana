@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"nancy_amancio (1).png",
+songname:"A Quien Iré",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Eres Mi Aire",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"El Nombre De Jesús",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Vive Enamorada",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Tu Amor En Mi",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Dos Corazones",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Que Te Parece",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Acércate",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Nunca Te Olvido",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (1).png",
+songname:"Vivir Sin Ti",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-01/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Amándome Así",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Hasta El Fondo De Mi Alma",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"No Me Faltes",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Yo Me Rindo A El",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Grito A Ciegas",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Perfecto Romance",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Se Abrió La Tumba",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Agradecida",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"El Rico Y Lázaro",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (2).png",
+songname:"Algo Extraño",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-02/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Arrebato",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Este Es El Tiempo",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Sal Fuera",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Que Se Abran Los Cielos",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Estableciendo El Reino",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Declárate En Bendición",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Esta Es La Fe",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Tu Voz",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Quiero Darte Mi Alma",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Tú Gracia",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Mi Proveedor",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/11.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (3).png",
+songname:"Dios Te Ha Dado",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-03/12.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"En Libertad",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Que Me Cubra Tu Gracia",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Es Confiar",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Lucha",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Tu Propósito",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"No Temeré",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Cambie De Piel",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Sumergida En Ti",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Por Tu Sangre",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Yo Soy",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Águila",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/11.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (4).png",
+songname:"Abre Tus Oídos",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-04/12.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Amándome Así",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"A Quién Iré",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Hasta El Fondo De Mi Alma",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"A La Par Contigo",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Dos Corazones",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Se Abrió La Tumba",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Grito A Ciegas",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Yo Me Rindo A El",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"El Rico Y Lázaro",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Perfecto Romance",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Sueños",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/11.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Me Voy Contigo",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/12.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (5).png",
+songname:"Algo Extraño",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-05/13.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Me Paro En La Brecha",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"La Demanda",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Mujer De Destino",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Sopla Vida",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"El Proceso",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Corazón De Guerrera",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Hijo Pródigo",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"A Puro Decreto",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Será Posible",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (6).png",
+songname:"Derribando Gigantes",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-06/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Mis Sueños",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Tu Oveja Fiel",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Hazme Llorar",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Llorando En Silencio",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Vuelvo",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Mi Creador",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"Llena Mi Ser",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (7).png",
+songname:"La Nueva Jerusalén",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-07/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Dios Me Puso Nombre",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Anulo El Decreto",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Suelta",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Isaías 61",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Lanzo Flechas",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Como Una Guerrera",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"La Lluvia Cae",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Venga Tu Reino",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Vere Los Cielos",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (8).png",
+songname:"Las Mujeres Se Respetan",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-08/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Te Amo, Te Quiero",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/01.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Cuando Oras",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/02.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Un Corazón",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/03.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Tu",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/04.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Sobreviviré",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/05.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Un Toque De Fe",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/06.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Entre Nubes Y Algodón",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/07.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Te Doy",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/08.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Estoy Ahí",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/09.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Que No Se Acabe",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/10.mp3",
+artistname:"Nancy Amancio",},
+
+{thumbnail:"nancy_amancio (9).png",
+songname:"Clama",
+audio:"https://archive.org/download/mc.musica.n-p/nancy-amancio/Album-09/11.mp3",
+artistname:"Nancy Amancio",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

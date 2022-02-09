@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"redimi2 (1).png",
+songname:"Stamina",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Gravy",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Jesús",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Revolú",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Alegría",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Locos Como Yo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Todo Va A Estar Bien",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Filipenses 1:6",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Replay",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"La Cita",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Bendecido",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"60-40",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (1).png",
+songname:"Obvia",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-01/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Voy Delante",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Invencible",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Declaro",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Pelao Y Sin Dinero",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"¡Que Susto!",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Extraterrestre",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"No Lo Hago Para Que Me Miren",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Vida Prestada",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"El Equipo Campeón",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"El Campamento",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Holly Hypo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Somos Un Equipo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/14.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Dale Con Fe",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/15.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Algo Distinto",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/16.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Serenata De Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/17.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"Oh Señor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/18.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (2).png",
+songname:"La Verdad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-02/19.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Exterminador",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Estoy Aquí",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Pao Pao Pao",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Ella No Cree En El Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Es Con Dios",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"¿Por Que Me Haces Daño?",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Sangre En El Caserío",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"7 En El Micrófono",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Eto He Pa Hoy",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Dios Bendiga A Puerto Rico",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"El Dia De Dios",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (3).png",
+songname:"Llamado",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-03/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Intro Exterminio",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Dominicano Soy",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Esperando Por Ti",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"E Pa Lante Que Vamos",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Si Estás Conmigo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Bienvenidos A Santo Domingo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Que Dios Bendiga",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"7 En El Micrófono",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Hip Hop Dominicano",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Raphy Méndez 4",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Preso En Libertad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (4).png",
+songname:"Outro Llamado",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-04/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"No Woman Don’t Cry",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Esperando Por Ti",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Tengo El Poder",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Si Estás Conmigo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Pao Pao Pao",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Sobreviviré",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Dangerous",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Ella No Cree En El Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Estoy Aquí",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Sangre En El Caserío",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Raphy Méndez",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Preso En Libertad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (5).png",
+songname:"Outro Llamado",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-05/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Sangre",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Déjame Nacer",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Ese Soy Yo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Ya No Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"No Mas Muerte",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Raphy Méndez",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Raphy Méndez",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"La Envidia",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Que Me Viste",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"No Hay Casualidad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Micrófonos",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Hasta Los Dientes",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Falsa Risa",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/14.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Quien Nos Va A Cambiar",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/15.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Lo Que Quiero",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/16.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Historia Bella",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/17.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (6).png",
+songname:"Siembra Y Cosecha",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-06/18.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Operación Mundial",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"El Nombre De Jesús",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Quiero Ser Como Tu",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Bonita",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Aleluya Amen",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Gol",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Ruge 2.0",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Palabras",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Nunca Me Avergonzare",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Imparable",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Trastornadores",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Muchachos",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (7).png",
+songname:"Llamado",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-07/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Intro Fenómeno",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Ruge",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Yo Seré Tu Sol",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Embute",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Me Amas",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Anormales",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"El Es El Rey",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Volví A Enamorarme",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Me Amas",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Bad Man",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Amor Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (8).png",
+songname:"Mis Mejores Navidades",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-08/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Viviré",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Ofensivo Y Escandaloso",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Por La Eternidad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Abre Los Cielos",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Tus Pasos",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Canción De Libertad",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Espíritu Santo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Pura Sal",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Paso A Paso",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Milagro De Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (9).png",
+songname:"Llamado Pura Sal",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-09/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Soy Yo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Si He De Morir",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Se Acabó",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Seguiré Luchando",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"El Cantante Cristiano 1",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Tiempos Mejores",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Rap Redimi2",
+audio:"https://arRedimi2chive.org/download/mc.musica.r/redimi2/Album-10/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"60 Líneas Al Internet",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"Nueva Vida",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"En Victoria",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"La Intención Del Corazón",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (10).png",
+songname:"No Quiero Ser",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-10/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"No Canto Basura",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"La Calle No Deja Na' Bueno",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Revolución",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Agua, Pan Y Luz",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Toi Quitao",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Dios Te Está Mirando",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Recuento Rafy Méndez",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Rafy Méndez",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"No Te Equivoques",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Búscalo",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Omar Y Erika",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Rap Redimi2",
+audio:"https://arRedimi2chive.org/download/mc.musica.r/redimi2/Album-11/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/14.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Amo Lo Que Hago",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/15.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"Carta De Un Fan",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/16.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (11).png",
+songname:"No Canto Basura",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-11/17.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Trapstorno",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Esto Suena Bien",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Armado Y Peligroso",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"La Fiesta",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Mas De Ti",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Me Libere",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Cuando El Corazón",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Asina Nona",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Quien Contra Mi",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Por Un Like",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"Nadie Como Tu",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (12).png",
+songname:"No Parare",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-12/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"La Calle No Deja Na’ Bueno",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/01.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Sangre",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/02.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"No Canto Basura",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/03.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"De Tal Manera",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/04.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Toy Quitao",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/05.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Todo Se Lo Debo A El",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/06.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Que Me Viste",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/07.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Buenas Noticias Y Que Futuro Tendrá",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/08.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Ya No Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/09.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Serenata De Amor",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/10.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Declaro",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/11.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Soy Libre",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/12.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Fenomenal",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/13.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"El Rey",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/14.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Estamos De Fiesta",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/15.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Transformers",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/16.mp3",
+artistname:"Redimi2",},
+
+{thumbnail:"redimi2 (13).png",
+songname:"Sigo Caminando",
+audio:"https://archive.org/download/mc.musica.r/redimi2/Album-13/17.mp3",
+artistname:"Redimi2",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
