@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"manny_montes (1).png",
+songname:"Suena El Jibaro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Yo No Canto Basura",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"La Calle No Deja Na Bueno",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Tu Niña",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Fuego",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Sube El Volumen",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"De Lo Vil",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Mi Respaldo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Sacude",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Alza La Mano",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Santito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Declaro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Suena",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (1).png",
+songname:"Nadie Como Tu",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-01/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Por Ti Viviré",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Falta Amor",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Quiero Decirte",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Me Enamore De Ti",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Cuidao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Loco Por Tu Amor",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"No Quiero Mas Pelea",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Volvamos A Empezar",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Eres Tu",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"No Desesperes",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Amarte Es Mi Placer",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"Corazón De Metal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (2).png",
+songname:"El Es Amor",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-02/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Fluye",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"No Hagas Caso Na",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Mira Pal Lao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Corazón Abierto",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"De Fiesta",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"No Me Avergüenzo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Atentos Y Apercibidos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Reggaetón Mix",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"La Chica Que Yo Amo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Poco A Poco",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (3).png",
+songname:"Uk2",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-03/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"El Escenario",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Que Mi Música No Pare",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Loco Por Ti",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"El Gozo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Intro Mafia Blanca",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Mafia Blanca",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Yo Soy De Barrio",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Afueguember",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Intro Entre Dos Mundos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Entre Dos Mundos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"No Hay Rewind",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Sueña",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Ellos Se Matan",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"El Sahara",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Amor Platónico",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Piensa",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Haciendo Lo Mio",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"The Inmortal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (4).png",
+songname:"Uk2",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-04/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Realidades",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Ricky Y Manuel",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Vida Dura",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Sienten Miedo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Es Tiempo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Te Equivocaste",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"La Chica Que Yo Amo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Manos Arriba",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Lirica Letal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Demasiao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Que Lástima",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Improvisación",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Poco A Poco",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Ya Tú Sabes",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Ganándolos A Todos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Rankeao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Ministración",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"La Vida Que Nace De Muerte",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Predicación",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"United Kingdom",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/21.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Corillo En Vivo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/22.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Ricky Y Manuel",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/23.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Suena El Jibaro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/24.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (5).png",
+songname:"Si No Sabías",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-05/25.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (6).png",
+songname:"Dios Mio Gracias",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-06/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (6).png",
+songname:"Está Bien",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-06/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (6).png",
+songname:"Cómodo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-06/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (6).png",
+songname:"Praise",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-06/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (6).png",
+songname:"Bienaventurado",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-06/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Línea De Fuego",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Fugitivo De Tu Amor",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Una Oportunidad",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Un Secreto",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Mi Sueño",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Conoce La Historia",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Mi Película",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Me Canse De Lo Mismo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Si Se Puede",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Te Mata",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Fronteame Con Lírica",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Tan Difícil",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Manso Pero No Menso",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (7).png",
+songname:"Mi Libreta",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-07/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"No Me Quito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Cielo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Es Muy Tarde Ya",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Ábranme Paso",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"De Cielo A La Tierra",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Así Es Que Es",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Pa Que Aprendas",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"El Magnifico",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Lero Lero",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Aguanta Presión",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"El Bravo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (8).png",
+songname:"Entre El Bien Y El Mal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-08/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Los Inmortales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"El Inmortal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Cuidao Con El Perro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Alza La Mano",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Que Aguanten",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Ellos Inventan",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Como Sale",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Lo Que Traemos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Aguanta La Presión",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Interlude - Mensajes",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Contra Mi",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vamo A Alabarlo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Andamos Con El Rey",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Métele Dembow",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Tírate",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"De Que Vale",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Sube El Volumen",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Quienes Somos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Esto Es Pa Gozarse",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Mi Bendición",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/21.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vamos A Darle",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/22.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vida Con Propósito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/23.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"No Puedo Seguir",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/24.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Alaba",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/25.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"De Lo Vil",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/26.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Somos Reales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/27.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Los Renacidos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/28.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Solo En El",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/29.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Los Inmortales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/30.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Abre Tus Ojos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Realidades",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Te Equivocaste",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Ricky Y Manuel",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Ay Dios Mio",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Ganándolos A Todos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Interlude",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Manos Arriba",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"La Vida Que Nace De Muerte",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"La Chica Que Yo Amo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Loco Loco",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Nunca Me Abandonaste",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (10).png",
+songname:"Bonus Track",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-10/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Solo Rap",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Por Fe",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Era Yo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"¿A Quién Tu Representas?",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Mario Trampas",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Todo Estará Bien",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Nunca Te Conocí",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Mi Forma",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Ak 48",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Ya Me Voy",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Último Momento",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Somos Uno",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Yo Creo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Paz",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Champion",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Yo Soy La Voz",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Beautiful",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Estas Aquí",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Oye Tu",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Muerte Segura",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (11).png",
+songname:"Champion",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-11/21.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Amén",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Sin Frenos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Se Llama Jesús",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Tic Toc",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Rodríguez Rodríguez",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Loyalty",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Caí",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Engaño",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Fuego",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Guillao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Contenido",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Smash",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Final Fatal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (12).png",
+songname:"Dios Está De Vacaciones",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-12/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"United Kingdom",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Heme Aquí",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Sigue Corriendo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Poco A Poco",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Mambo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Un Solo Cuerpo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"La Salida",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Vamos a Adorar",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Lirica Letal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Vida Dura",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Desecha",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Un Solo Gobierno",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"David Y Goliat",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Rankeao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Algo Nuevo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"De Otra Manera",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Atención",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Mi Voz Se Escucha",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Váyase Con Eso",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Jesús Me Salvo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/21.mp3",
+artistname:"Manny Montes",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

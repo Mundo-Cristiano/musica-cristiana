@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"marcos_witt (1).png",
+songname:"Preludio Conmemorativo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Canción A Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Motivo De Mi Canción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Es Por Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Cuán Bello Es El Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Has Cambiado Mi Lamento",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Un Adorador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Será Llena La Tierra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Se Oye En La Naciones",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Levántate",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/15.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/16.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Aleluya A Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/17.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Cristo Es Mi Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/18.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Tú Harás",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/19.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"En Los Montes, En Los Valles",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/20.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/21.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Tu Amor Por Mí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/22.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Yo Te Busco",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/23.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Temprano Yo Te Buscaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/24.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Tu Mirada",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/25.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Hermoso Eres",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/26.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Exáltate",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/27.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Mas El Dios De Toda Gracia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/28.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Dios De Pactos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/29.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (1).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-01/30.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Tengo La Victoria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Un Adorador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Tu Misericordia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Libertad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Resucitó",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Mira",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Yo Soy",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Adoremos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (2).png",
+songname:"Hoy",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-02/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"A Dios El Padre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Alabadle",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Levántate Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Oh Jesús",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Tuya La Gloria Es",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Temprano Yo Te Buscare",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Mas El Dios De Toda Gracia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (3).png",
+songname:"Santo Santo Santo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-03/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Introducción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Mira Nomas",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Aclama A Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Alegre, Muy Alegre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Sólo En Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Tu Eres El Gozo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Dios De Mi Salvación",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Tómame En Tus Brazos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Cristo, Amante De Mi Alma",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Fuente De Vida",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Tú Me Haces Tan Feliz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Con Todo El Gozo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Vive La Alegría",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (4).png",
+songname:"Poema De Salvación",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-04/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Enciende Una Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Dios De Pactos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Te Miré A Los Ojos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Mi Pan Mi Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Lávame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Danzaré, Cantaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"La Fuerza De Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Escucharte Hablar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Sana Nuestra Tierra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Yo Te Busco",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (5).png",
+songname:"Es Por Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-05/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Canción A Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Eres Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Sólo Tu Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Por Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"El Triunfador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Nunca, Nunca Dejaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Tragedia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Valle De Sombra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (6).png",
+songname:"Cuídame, Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-06/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Dios Al Mundo Amó",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Siempre Te Amaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Esta Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Te Alabaré Mi Buen Jesús",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Yo Te Quiero Amar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Enciende Una Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Es Jesús",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Mi Buen Amigo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Tengo La Palabra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (7).png",
+songname:"Eres Todopoderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-07/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Yo Te Busco",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Aquí Estoy Otra Vez",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Oh, Gracias, Encontré La Vida",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Vivifícame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Lávame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Solo Por Tu Sangre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Mi Pan, Mi Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Amarte Más",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Dios De Pactos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Celebraré, Me Alegraré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (8).png",
+songname:"Al Rey",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-08/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Mi Anhelo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Vengan Todos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"El Gozo Del Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Tengo Libertad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"A Ti Sea La Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Es Por Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Tu Eres Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Rey De Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"En Los Montes En Los Valles",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (9).png",
+songname:"Dios Ha Sido Bueno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-09/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Fiesta En El Corazón",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Palabras De Vida Eterna",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Amare Al Señor Mi Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Tengo La Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Te Daré Alabanza Y Honor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"A Quien Iré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Ven A Mí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"Luz De Mi Vida",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (10).png",
+songname:"El Volverá",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-10/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Si Puedes Creer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Enciende Una Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Dios De Pactos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Amante De Ti Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Yo Te Busco",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Escucharte Hablar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Dios Ha Sido Bueno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Jesús Eres Mi Buen Pastor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Tú Me Haces Tan Feliz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Yo Quiero Ser Como Tu",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Cuan Bello Es El Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (11).png",
+songname:"Hermoso Eres",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-11/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"No Cambiaría",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Se Oye En Las Naciones",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"No Podría Vivir",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Me Has Llamado A Conocerte",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Escucharte Hablar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Levántate Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Venció",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Más Que Palabras",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Jesús Eres Mi Buen Pastor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (12).png",
+songname:"Enciende Una Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-12/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Es Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Suenen Dulces Himnos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Oh Ven Bendito Emanuel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Venid Fieles Todos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Nada Especial",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Emanuel Dios Con Nosotros Es",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Jesús Nació",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"La Anunciación",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Noche De Paz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (13).png",
+songname:"Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-13/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Somos El Pueblo De Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"¿Quién Como Tú?",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Perdonados",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Loores Dad A Cristo El Rey",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Nuestro Padre Eres Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Con Tu Sangre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Damos Honor A Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Unidos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Dios Al Mundo Amó",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (14).png",
+songname:"Somos El Pueblo De Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-14/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Jesús",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Tu Nombre Es Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Dios En Todo Tiempo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Abre Hoy Los Cielos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Dios Imparable",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Salmo 45",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Hermoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Regalo Celestial",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Lléname",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Toma Toda Mi Vida",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (15).png",
+songname:"Jesús Salva",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-15/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Un Adorador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Canción A Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Tú Y Yo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Cuán Bello Es El Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Motivo De Mi Canción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Fiesta",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Hoy",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"De Gloria En Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (16).png",
+songname:"Te Exaltamos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-16/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Alabadle",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Jeshua",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Oh Jesús",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Señor Hazme Un Radical",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Venció",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"La Anunciación",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Temprano Yo Te Buscaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Tu Mirada",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"A Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Amante De Ti, Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (17).png",
+songname:"Hermoso Eres",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-17/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Enciende Una Luz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Amaré Al Señor Mi Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Me Asombra Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"No Podría Vivir",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Mi Primer Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"¿Quién Cómo Tu?",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Tengo La Palabra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Jesús Eres Mi Buen Pastor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Danzaré, Cantaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (18).png",
+songname:"Dios Al Mundo Amó",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-18/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Tu Nombre Oh Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Señor Hazme Un Radical",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Hay Poder",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"A Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Cristo Es Mi Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Exáltate",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (19).png",
+songname:"Hermoso Eres",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-19/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Preparad El Camino",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"El Deseado De Las Naciones",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Shalom, Sea La Paz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Hosanna",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Alzaos Puertas Eternas",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Restauras El Santo Lugar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Yeshúa",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Por Tu Llaga",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Tú, Cordero De Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Mesías, Mi Salvador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Y Todo Ojo Le Verá",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (20).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-20/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Te Exaltamos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Levantamos Tu Nombre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Yeshúa",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Me Gozaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Restaurarás El Santo Lugar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Él Es Mi Rey",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"A Cristo, Sólo A Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Porque Tú Eres Bueno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Maravilloso Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Al Estar Aquí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (21).png",
+songname:"Quiero Levantar Mis Manos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-21/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Cantando Alegre Seguiré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Que Lindo Es Mi Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Suplica",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"América Será Para Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Oh, Jesús Creo En Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Quiero Cantar Una Linda Canción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Peña De Horeb",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Usa Mi Vida",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Bendice Hoy",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Solamente En Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Solamente Dios Hace Al Hombre Feliz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Vamos Orando",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Siento El Fuego",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Le Voy A Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Te Tengo A Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/15.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Ayer, Hoy Y Siempre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/16.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"He Decidido Seguir A Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/17.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (22).png",
+songname:"Te Vengo A Decir",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-22/18.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"No Hay Dios Tan Grande Como Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Salmo 121",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Te Vengo A Decir",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Visión Pastoral",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Dame Más Sabiduría",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Popurrí E Coros",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Jesús Es Mi Rey Soberano",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Divino Compañero Del Camino",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (23).png",
+songname:"Sendas Antiguas",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-23/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Sananos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Sana Nuestra Tierra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Mi Primer Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Levántate Y Sálvame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Las Naciones Proclamen",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Acuérdate Oh Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Esperamos En Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Grandes Cosas Ha Hecho El Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Aleluya A Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (24).png",
+songname:"Danzaré, Cantaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-24/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Oración Y Diálogo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Tu Amor Por Mi",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Tu Misericordia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Motivo De Mi Canción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Te Anhelo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (25).png",
+songname:"Es Por Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-25/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Alabemos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Vivo Para Amarte",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Nuestro Salvador",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Dios Eres Mio",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Algo Sucede",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Mayor Es El",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Sigues Siendo Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Eres Santo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Esperaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Tiempo Pa' Brincar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"Somos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (26).png",
+songname:"La Bendición",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-26/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Alabemos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Vivo Para Amarte",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Algo Sucede",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Dios Eres Mio",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Eres Santo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Sigues Siendo Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Mayor Es Él",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Tiempo Pa'brincar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Somos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"La Bendición",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (27).png",
+songname:"Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-27/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Obertura",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Tengo Sed",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Cuán Hermoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Mas El Dios De Toda Gracia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Tu Misericordia",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Temprano Yo Te Buscaré",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Te Necesito Más Que Ayer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Dios Ha Sido Bueno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Al Estar Aquí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (28).png",
+songname:"Anhelo Tu Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-28/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Dios Desciende Aquí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Es Aquí, Es Ahora",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Derrama De Tu Fuego",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Muévete",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Sobrenatural",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Si Puedes Creer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Aumenta Mi Fe",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Poderoso Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Yo Creo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Tu Harás",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Como Tu No Hay Nadie",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Amor Eterno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Muévete",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (29).png",
+songname:"Si Puedes Creer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-29/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"¡Fiesta!",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Motivo De Mi Canción",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Necesitas Conocerle",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Cuán Hermoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Te Anhelo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Espera",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Tentación",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"Te Necesito Más Que Ayer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"El Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (30).png",
+songname:"¿A Quién Tengo Yo Sino A ti?",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-30/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Te Exaltamos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Tuyo Es El Reino",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Roca Eterna",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Tú Eres El Rey",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Quién Es Como Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Se Exalta Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Mi Ser Alaba Al Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Se Exalta Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Medley: Purifícame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Yo Quiero Ser Como Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Santo Es Tu Nombre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Toda La Tierra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"En La Tierra Habrá",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Tiempo De Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Blanca Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Mi Deseo De Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Que Niño Es Este",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"En Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Nada Especial",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Santa La Noche",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Medley Navideño",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Hoy Es Navidad",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Hosanna Al Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (32).png",
+songname:"Navidades Alegres",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-32/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Tú Y Yo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"México, Vamos A Cambiar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Ven Y Deléitate",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Has Cambiado Mi Lamento",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Adonai",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Somos Pueblo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Hoy Es Tiempo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Cuán Bello Es El Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Porque Para Siempre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"De Gloria En Gloria",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Tu Amor Por Mi",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Majestuoso, Poderoso",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Lléname Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (33).png",
+songname:"Heme Aquí",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-33/14.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Al Que Es Digno",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Alégrense",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Venció",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Amo A Cristo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Paz Cuán Dulce Paz",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Tu Mirada",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Amante De Ti Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (34).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-34/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Tu Gracia Me Sostiene",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Vive",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Me Asombra Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"La Fuerza De Tu Amor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Si No Lo Hago Yo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"En Quien Puedo Confiar",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Te Mire A Los Ojos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Jennifer",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Tiempo",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (35).png",
+songname:"Es Por Ti",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-35/11.mp3",
+artistname:"Marcos Witt",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

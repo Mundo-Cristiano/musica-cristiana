@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"manuel_bonilla (1).png",
+songname:"50 Años",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Creo En Ti",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"El Pescador",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Mi Pensamiento Eres Tu",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Visión Pastoral",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"El Rey Ya Viene",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Un Grano De Arena",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Evocando El Pasado",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Ahora Canto Aleluya",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Mas Allá",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Una Linda Canción",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/11.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Cristo Nombre Sin Igual",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/12.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (1).png",
+songname:"Haz De Mi - Yo Quiero Ser",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-01/13.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Blanca Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Ya Llego La Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"En Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Santa La Noche",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Venid Pastorcillos",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Noche De Paz",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"El Niño Del Tambor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Venid Y Adoremos",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Su Nombre Es Jesús",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (2).png",
+songname:"Tradicional Navideño",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-02/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Venid Pastorcillos",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Príncipe De Paz",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"El Niño Del Tambor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Noche De Paz",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Nochecita",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Blanca Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Jesús Nació En Belén",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"En Navidad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"A Medianoche En Belén",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Año Nuevo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/11.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (3).png",
+songname:"Santa La Noche",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-03/12.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"El Rey Ya Viene",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Evocando El Pasado",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Cristo Nombre Sin Igual",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Eso Eres Tu",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Diosito Cuidado",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Hoy Quiero Seguirte",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"A Solas Con Cristo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"El Me Encontró",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Triunfara El Amor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Solo Cristo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/11.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Mas Alla",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/12.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Es Jesús",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/13.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (4).png",
+songname:"Viene Ya",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-04/14.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Camina Conmigo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Espíritu Santo Bienvenido",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Mas Alla Del Sol",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Lo Divino ",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Dios Te Bendiga",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Gracias Cristo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Cantare",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Glorioso Amor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Mi Barca",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Mi Señor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Caminante",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/11.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Omnipotente",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/12.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Seguiré",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/13.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Torre Babel",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/14.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Príncipe De Paz",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/15.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Años Felices Con Dios",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/16.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Muchas Gracias Señor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/17.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (5).png",
+songname:"Mi Pastor Querido",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-05/18.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Recuerdos Del Ayer",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Caminante",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Obscuridad",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Torre De Babel",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Porque Esperar",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Seguiré",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"El Diluvio",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Omnipotente",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Príncipe De Paz",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (6).png",
+songname:"Nueva Creación",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-06/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Todo Es Obra De Dios",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Me Lavó",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"El Barco Es Jesucristo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Los Días De La Semana",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Cristo Ama A Los Niños",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Buenos Días Señor Jesús",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Mi Pequeño Corazón",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Esta Lucecita",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"El Tren Del Evangelio",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (7).png",
+songname:"Los Niños Son De Cristo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-07/10.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Años Felices Con Dios",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/01.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Esposa Mía",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/02.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Feliz Cumpleaños",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/03.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Gracias Mamá",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/04.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Dios Te Bendiga",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/05.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Muchas Gracias Señor",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/06.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Para Ti Mi Padre",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/07.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Quinceañera",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/08.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Mi Pastor Querido",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/09.mp3",
+artistname:"Manuel Bonilla",},
+
+{thumbnail:"manuel_bonilla (8).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.m/manuel-bonilla/Album-08/10.mp3",
+artistname:"Manuel Bonilla",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

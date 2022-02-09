@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"marcos_witt (31).png",
+songname:"Te Exaltamos",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/01.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Tuyo Es El Reino",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/02.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Roca Eterna",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/03.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Tú Eres El Rey",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/04.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Quién Es Como Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/05.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Se Exalta Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/06.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Mi Ser Alaba Al Señor",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/07.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Se Exalta Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/08.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Medley: Purifícame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/09.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/10.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Yo Quiero Ser Como Tú",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/11.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Santo Es Tu Nombre",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/12.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"Toda La Tierra",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/13.mp3",
+artistname:"Marcos Witt",},
+
+{thumbnail:"marcos_witt (31).png",
+songname:"En La Tierra Habrá",
+audio:"https://archive.org/download/mc.musica.mw/marcos-witt/Album-31/14.mp3",
+artistname:"Marcos Witt",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"marcos_vidal (1).png",
+songname:"Anclado En La Colina",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Mi Esperanza",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Es Por Fe",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Discípulos",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Medley",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Dime Que Mas",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Cara A Cara",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Aslan",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"El Milagro",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Santo Espíritu",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Mi Luz Y Mi Salvación",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/11.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Mi Regalo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/12.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (1).png",
+songname:"Contra Corriente",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-01/13.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Una Misma Visión",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Oh Señor",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Al Rey",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Eres Escudo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Aclamad Al Señor",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Lléname De Ti",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"El Milagro",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Cuánto Te Amo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Cara A Cara",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Eres Tú",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/11.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Dulce Refugio",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/12.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Todopoderoso Dios",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/13.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (2).png",
+songname:"Tú Eres Dios",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-02/14.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"A Ti La Gloria",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Dime Que Mas",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"El Niño De Belén",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Toca A Tu Pueblo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Buscadme Y Viviréis",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Oh Que Amor",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Libérame",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Sólo Una Vez",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Homenaje",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Caifás",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (3).png",
+songname:"Oh Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-03/11.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"El Milagro",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"Parábola",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"No Hay Compromiso",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"Es Por Fe",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"El Verbo Se Hizo Carne",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"Salmo 84",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"No Te Quepa Duda",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"El Pajarillo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"Aquí Estamos",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (4).png",
+songname:"Cara A Cara",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-04/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Magerit",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Dime La Verdad",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Abriendo Vela",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Nadie Como Tú",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Lo Eres Todo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Creer",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Si Aún Te Quiero",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Tu Costado Sigue Abierto",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (5).png",
+songname:"Nana",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-05/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"Introducción",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"Bienvenidos Al Arca",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"El Pavo Real",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"El Burro",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"El Ruiseñor",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"La Tortuga",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"La Serpiente",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"El Ciervo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"La Paloma",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (6).png",
+songname:"Mientras Haya Luz",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-06/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (7).png",
+songname:"Luz Y Salvación",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-07/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (7).png",
+songname:"Salmo 84",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-07/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (7).png",
+songname:"La Cruz",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-07/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (7).png",
+songname:"Anclado En La Colina",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-07/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (7).png",
+songname:"El Milagro Feat. Lupo Vidal",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-07/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Nadie Como Tú",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Libérame",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"¿Quién Soy Yo?",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"La Oveja Perdida",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Uña Y Carne",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"El Ciego",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Aquí Estamos",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Gregarios De Lujo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"El Payaso",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (8).png",
+songname:"Nada Más",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-08/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Santo Espíritu",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Consejo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Suyo Nada Más",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Mi Regalo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Así Es Él",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Por La Vida",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Cuando El Venga",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Anclado En La Colina",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"Uña Y Carne",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (9).png",
+songname:"The Miracle",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-09/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Nieve En Verano",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Nada Especial",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"¿Quién Soy Yo?",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"¿Quién Irá?",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Cristianos",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Lupo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Mientras Viva",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Llamados A Amarle",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"El Payaso",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (10).png",
+songname:"Aslan",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-10/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"El Pescador",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Mi Luz Y Mi Salvación",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Nieve Y Agua",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Gregarios De Lujo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Es Mi Hermano",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Ángeles De Mazapán",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Contracorriente",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"Madre",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"El Cantar De Nuva",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (11).png",
+songname:"El Día Viene",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-11/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Uña Y Carne",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Consejo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Por La Vida",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Suyo Nada Más",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"El Milagro",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Quién Soy Yo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Israel",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"El Payaso",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Mi Regalo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Cara A Cara",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Es Por Fe",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/11.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Cristianos",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/12.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Buscadme Y Viviréis",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/13.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (12).png",
+songname:"Mientras Haya Luz",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-12/14.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"El Ladrón",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Bagatella",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Niño De Belén",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Nada Mas",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Los Que Esperan En Dios",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Salmo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"El Ciego",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Hay Luz",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Mediano",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (13).png",
+songname:"Variaciones",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-13/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Yo Te Alabaré",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/01.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Quien Como Tú",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/02.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Ungüento",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/03.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Tu Nombre",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/04.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Tu Misericordia",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/05.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Miqueas",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/06.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Descansaré En Ti",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/07.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Solo En Ti Confío",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/08.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Adoradle",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/09.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Conocerte",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/10.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Exaltado Seas Tú",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/11.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/12.mp3",
+artistname:"Marcos Vidal",},
+
+{thumbnail:"marcos_vidal (14).png",
+songname:"Año Nuevo",
+audio:"https://archive.org/download/mc.musica.m/marcos-vidal/Album-14/13.mp3",
+artistname:"Marcos Vidal",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
