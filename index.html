@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title></title>
+</head>
+<style>
+    *{
+    margin: 0;
+	padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+    width: 100%;
+	height: 100%;
+	background: url(fondo-menu.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	justify-content: center;
+	align-items: center;
+    padding: 10px;
+}
+
+body::before{
+	content:"";
+	width:100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+    background: linear-gradient(135deg,rgb(60, 128, 168),lightblue,rgb(60, 128, 168),lightblue,rgb(60, 128, 168));
+    opacity: 0.8;
+	z-index: -1;
+}
+
+/* contenedor lista */
+ul {
+    border: solid white 0.5px; 
+    width: 100%;
+    margin: 0px auto;
+    overflow: auto;
+}
+
+/* fondo lista de cantantes */
+.lista li{
+    background-color: rgba(0, 0, 0, 0.2);
+    height: auto;
+    text-align: center;
+    list-style: none;
+    border-radius: 0.2em;
+    width: 90%;
+    height: auto;
+}
+
+
+/* lista de cantantes */
+.lista li a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    font-size: 2em;
+    text-shadow: 1px 1px 1px black;
+    width: 90%;
+}
+
+li {
+    margin: 0.5em auto;
+    padding: 0.5em;
+}
+
+/*media query*/
+@media only screen and (max-width: 768px) {
+    .lista li a{
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .lista li a{
+        font-size: 2.5em;
+    }
+}
+
+
+</style>
+<body>
+        <ul class="lista">
+            <li><a href="album\abel_zavala.html">Abel Zavala</a></li>
+            <li><a href="album\alex_campos.html">Alex Campos</a></li>
+            <li><a href="album\annette_moreno.html">Annette Moreno</a></li>
+            <li><a href="album\barak.html">Barak</a></li>
+            <li><a href="album\christine_dclario.html">Christine D’Clario</a></li>
+            <li><a href="album\coalo_zamorano.html">Coalo Zamorano</a></li>
+            <li><a href="album\conquistando_fronteras.html">Conquistando Fronteras</a></li>
+            <li><a href="album\daniel_calveti.html">Daniel Calveti</a></li>
+            <li><a href="album\danilo_montero.html">Danilo Montero</a></li>
+            <li><a href="album\danny_berrios.html">Danny Berrios</a></li>
+            <li><a href="album\dc_reto.html">DC RETO</a></li>
+            <li><a href="album\edgar_lira.html">Edgar Lira</a></li>
+            <li><a href="album\en_espiritu_y_en_verdad.html">En Espíritu Y En Verdad</a></li>
+            <li><a href="album\evan_craft.html">Evan Craft</a></li>
+            <li><a href="album\funky.html">Funky</a></li>
+            <li><a href="album\generacion_12.html">Generación 12</a></li>
+            <li><a href="album\hillsong.html">Hillsong</a></li>
+            <li><a href="album\ingrid_rosario.html">Ingrid Rosario</a></li>
+            <li><a href="album\jaci_velasquez.html">Jaci Velázquez</a></li>
+            <li><a href="album\jaime_murrell.html">Jaime Murrell</a></li>
+            <li><a href="album\jennifer_salinas.html">Jennifer Salinas</a></li>
+            <li><a href="album\jesus_adrian_romero.html">Jesús Adrián Romero</a></li>
+            <li><a href="album\jose_luis_reyes.html">José Luis Reyes</a></li>
+            <li><a href="album\juan_carlos_alvarado.html">Juan Carlos Alvarado</a></li>
+            <li><a href="album\juan_luis_guerra.html">Juan Luis Guerra</a></li>
+            <li><a href="album\julio_melgar.html">Julio Melgar</a></li>
+            <li><a href="album\julissa.html">Julissa</a></li>
+            <li><a href="album\kari_jobe.html">Kari Jobe</a></li>
+            <li><a href="album\kike_pavon.html">Kike Pavón</a></li>
+            <li><a href="album\la_tribu_de_benjamin.html">La Tribu De Benjamín</a></li>
+            <li><a href="album\lilly_goodman.html">Lilly Goodman</a></li>
+            <li><a href="album\luis_santiago.html">Luis Santiago</a></li>
+            <li><a href="album\manny_montes.html">Manny Montes</a></li>
+            <li><a href="album\manuel_bonilla.html">Manuel Bonilla</a></li>
+            <li><a href="album\marcela_gandara.html">Marcela Gándara</a></li>
+            <li><a href="album\marco_barrientos.html">Marco Barrientos</a></li>
+            <li><a href="album\marcos_brunet.html">Marcos Brunet</a></li>
+            <li><a href="album\marcos_vidal.html">Marcos Vidal</a></li>
+            <li><a href="album\marcos_witt.html">Marcos Witt</a></li>
+            <li><a href="album\michael_rodriguez.html">Michael Rodríguez</a></li>
+            <li><a href="album\miel_san_marcos.html">Miel San Marcos</a></li>
+            <li><a href="album\miguel_angel_guerra.html">Miguel Ángel Guerra</a></li>
+            <li><a href="album\milissia.html">Milissia</a></li>
+            <li><a href="album\milton_valle.html">Milton Valle</a></li>
+            <li><a href="album\nancy_amancio.html">Nancy Amancio</a></li>
+            <li><a href="album\oscar_medina.html">Oscar Medina</a></li>
+            <li><a href="album\petra.html">Petra</a></li>
+            <li><a href="album\rabito.html">Rabito</a></li>
+            <li><a href="album\redimi2.html">Redimi2</a></li>
+            <li><a href="album\rene_gonzales.html">Rene Gonzales</a></li>
+            <li><a href="album\rescate.html">Rescate</a></li>
+            <li><a href="album\ricardo_montaner.html">Ricardo Montaner</a></li>
+            <li><a href="album\roberto_orellana.html">Roberto Orellana</a></li>
+            <li><a href="album\rojo.html">Rojo</a></li>
+            <li><a href="album\tercer_cielo.html">Tercer Cielo</a></li>
+            <li><a href="album\torre_fuerte.html">Torre Fuerte</a></li>
+            <li><a href="album\triple_seven.html">Triple Seven</a></li>
+            <li><a href="album\un_corazon.html">Un Corazón</a></li>
+            <li><a href="album\variado.html">Variado</a></li>
+            <li><a href="album\vertical.html">Vertical</a></li>
+            <li><a href="album\vico_c.html">Vico C</a></li>
+        </ul>
+</body>
+</html>
