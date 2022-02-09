@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"variado (8).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/01.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tú Tan Mío",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/02.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Úsame",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/03.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tu Eres Rey",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/04.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"10,000 Razones",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/05.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Como Dijiste",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/06.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Loco Amor",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/07.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Que Se Abra El Cielo",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/08.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Al Que Es Digno",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/09.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Digno De Gloria",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/10.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"El Es Mi Amigo Fiel",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/11.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Jesús, Has Mi Carácter",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/13.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Salmo 84",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/14.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Canta Al Señor",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/15.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tú Has Cambiado Mi Lamento",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/16.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"La Bendición",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/17.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tumbas A Jardines",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/18.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Arde En Mí",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/19.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Mira Sus Manos",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/20.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Una Nueva Historia / Dios Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/21.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Como En El Cielo",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/22.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Dios Incomparable",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/23.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tu Amor Nunca Falla",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/24.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Hermoso Nombre",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/25.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Océanos",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/26.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"El Poder De Tu Amor",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/27.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Dame Tus Ojos",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/28.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Mi Universo",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/29.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tú Estás Aquí",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/30.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Eterno Dios",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/31.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tu Guías Mi Destino",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/32.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Digno Y Santo",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/33.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Le Canto",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/34.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Llevan Tu Nombre",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/35.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Al Final",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/36.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Por Ti Viviré",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/37.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Dame Tus Ojos",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/38.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Supe Que Me Amabas",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/39.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Dios De Lo Imposible",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/40.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"No Hay Nadie Como Tú",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/41.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/42.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Motivo De Mi Canción",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/43.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Renuévame",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/44.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/45.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Impresionante",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/46.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Viviré",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/47.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"No Me Soltarás",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/48.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Dios Me Ama",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/49.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Yo Elijo A Dios",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/50.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (8).png",
+songname:"Al Que Está Sentado En El Trono",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-08/51.mp3",
+artistname:"Variado",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

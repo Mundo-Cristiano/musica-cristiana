@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"vico_c (1).png",
+songname:"Aquel Que Había Muerto",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Calla",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Quieren",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Donde Comienzan La Guerras",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Careta",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"La Recta Final",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Dándote Vida",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Explosión Aka X-Plosion",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Tony Presidio",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (1).png",
+songname:"Aquel Que Había Muerto",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-01/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Babilla",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Pólvora",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Sentimiento",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Se Escapa",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Moriré",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Payasito",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"El Silencio Mata",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"El Corazón Se Pone Bruto",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"La Prueba De Farmacia",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Por Eso Lloro",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Angelina",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/11.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Aquí La Que Fallo Fue Usted",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/12.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (2).png",
+songname:"Agua",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-02/13.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Intro - Voy",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Desahogo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Se Escaman",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Lo Grande Que Es Perdonar",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"No Es Cuestión De Estar Pegao",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Te Me Puedo Escapar",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Tu Corazón Ya No Aguanta Pela",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Vámonos Po' Encima",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Compañera",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Esta Es La Esquina",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Mami",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/11.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Échale",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/12.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (3).png",
+songname:"Outro",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-03/13.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"La Movida",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"La Roca",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Danza",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Humolandia",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Con Poder",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Fuego",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Sin Semilla",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Libro Controversial",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Plomo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (4).png",
+songname:"Un Beso Y Una Flor",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-04/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Peligro",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Y Ahora Qué?",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Abusando",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"La Niña Modelo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Emboscada",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Los Perros",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"La Movida",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Por El Lente Del Cielo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Crack Crack",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (5).png",
+songname:"Súper Héroe",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-05/11.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/01.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"En Honor A La Verdad",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/02.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Capicu",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/03.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"5 De Septiembre",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/04.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Flowowow",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/05.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Para Mí Barrio",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/06.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"En La Barberia",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/07.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Superman",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/08.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Masacote",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/09.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"El Bueno, El Malo Y El Feo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/10.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Yerba Mala",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/11.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Mi Forma De Tiraera",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/12.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"5 De Septiembre",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/13.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"Para Mi Barrio",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/14.mp3",
+artistname:"vico C",},
+
+{thumbnail:"vico_c (6).png",
+songname:"El Bueno, El Malo Y El Feo",
+audio:"https://archive.org/download/mc.musica.s-z/vico-c/Album-06/15.mp3",
+artistname:"vico C",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
