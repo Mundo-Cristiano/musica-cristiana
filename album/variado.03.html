@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"variado (3).png",
+songname:"El Es Jehová",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/01.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"El Rey Te Mando A Llamar",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/02.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"El Secreto",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/03.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Escribiendo Victoria",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/04.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Espíritu Santo",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/05.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Estoy De Pie",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/06.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Fluye",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/07.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Himno De Victoria",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/08.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"La Congregación",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/09.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"La Decisión",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/10.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"La Gran Tribulación",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/11.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Llegará Tu Milagro",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/12.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Llena Este Lugar",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/13.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Me Enamore De Dios",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/14.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Mi Abogado",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/15.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Mi Copa Reboza",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/16.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Mi Desierto",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/17.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Mi Eterna Compañera",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/18.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"Mi Trabajo Es Creer",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/19.mp3",
+artistname:"Variado",},
+
+{thumbnail:"variado (3).png",
+songname:"No Es El Final",
+audio:"https://archive.org/download/mc.musica.s-z/variado/Album-03/20.mp3",
+artistname:"Variado",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

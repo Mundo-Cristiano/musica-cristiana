@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+        {thumbnail:"rojo (1).png",
+songname:"Si No Fuera Por Ti",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"En El Mar De Tu Gracia",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"Cuando Te Encontré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"Como Luz Llegó",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"No Soy Normal",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"Pertenezco A Ti",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (1).png",
+songname:"Bendito Jesús",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-01/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"He Decidido",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Siguiéndote Los Pasos",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Tu Amor Hace Eco En Todo Mi Universo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Alabad A Dios",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Tú Reinas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Fuego De Dios",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Solo Quiero Estar Donde Tú Estas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Te Amo Más Que A Mi Misma Vida",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Una Generación Apasionada",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Haré Oír Mi Voz",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Envíame",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (2).png",
+songname:"Cuan Grande Es Él",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-02/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Solo Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Me Amas Igual",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Te Quiero, Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"No Me Soltarás",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Eres Mi Pasión Y Mi Confianza",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Te Daré Sólo Lo Mejor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"¿Dónde? ¿Cómo?",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Quiero Darte Mis Manos",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Mi Existir",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Feliz",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Intimidad",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Por Conocerte",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Tu Eres Mi Dios",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Eres Todopoderoso",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/14.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Yo Soy La Revolución",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/15.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Invitación",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/16.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (3).png",
+songname:"Instrumental",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-03/17.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Ok",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Creo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Prefiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Brillaré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Tú, Yo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"El Amor Está Aquí",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Gasolina",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Le Voy A Cristo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (4).png",
+songname:"Vive En Mí",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-04/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Solo Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Siempre Seremos Amigos",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"¿Dónde? ¿Cómo?",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Te Quiero, Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Te Daré Lo Mejor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Por Conocerte",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Yo, Soy La Revolución",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Tú Eres Mi Dios",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Mi Existir",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Eres Todo Poderoso",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Siempre Te Tengo Presente",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Solo Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (5).png",
+songname:"Te Quiero, Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-05/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Sin Ti",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"No Hay Condenación",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Me Quemas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"No Me Avergüenzo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Quiero Volar",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Desde Que Te Conocí",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Sin Amor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Llueve En Mí / Dios Manda Lluvia",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Jardín De Rosas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Adiós Good Bye",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (6).png",
+songname:"Oración",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-06/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Así Como Respirar",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Verdadera Libertad",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Tu Palabra Es Mi Guía",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Brillarás",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Solo Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Me Amas Igual",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"No Me Soltarás",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Prefiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Ok.",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Gasolina",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Bajo Tu Control",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Brillaré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Digno Eres Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Hasta Que Ya No Respire Más",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/14.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Desde El Amanecer",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/15.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"No Hay Condenación",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/16.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Jardín De Rosas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/17.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"No Me Avergüenzo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/18.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (7).png",
+songname:"Bonus",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-07/19.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Intro ¿Estás Listo?",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Revolución",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"¿Cómo No Voy a Alabarte?",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Soy Tuyo Hoy",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Eres Lo Mejor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Con Todo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Dios De Maravillas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Digno Eres Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Hasta Que Ya No Respire Más",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Desde El Amanecer",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Quiero Más",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Contigo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (8).png",
+songname:"Te Alabaré, Mi Buen Jesús",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-08/14.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"No Me Soltarás",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Te Amo Más Que A Mí Misma Vida",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Brillaré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Desde El Amanecer",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"¿Dónde? ¿Cómo?",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Te Quiero, Te Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Bajo Tu Control",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Con Todo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Sólo Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Me Amas Igual",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Hasta Que Ya No Respire Más",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Siempre Te Amaré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Eres Todopoderoso",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Digno Eres Tú",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/14.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Tu Amor Hace Eco En Todo Mi Universo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/15.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Fuego De Dios",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/16.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Te Alabaré Mi Buen Jesús",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/17.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Ok",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/18.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Jardín De Rosas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/19.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Eres Mi Pasión Y Mi Confianza",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/20.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"No Hay Condenación",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/21.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Contigo Haré Historia",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/22.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Soy Tuyo Hoy",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/23.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"El Amor Está Aquí",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/24.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Te Daré Solo Lo Mejor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/25.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Adiós, Goodbye",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/26.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Mi Existir",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/27.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Yo Soy La Revolución",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/28.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Sin Ti",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/29.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Tú, Yo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/30.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Gasolina",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/31.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/32.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Quiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/33.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Le Voy A Cristo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/34.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (9).png",
+songname:"Tú Reinas",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-09/35.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"No Quiero Vivir Sin Tu Amor",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Brillaré Remix",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Tú, Yo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Siempre Te Amaré",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Ministración",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Gasolina",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Desde El Amanecer",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Bajo Tu Control",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/08.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Con Todo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/09.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Soy Tuyo Hoy",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/10.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Revolución",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/11.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Prefiero",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/12.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Brillaré Remix",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/13.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (10).png",
+songname:"Desde El Amanecer",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-10/14.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Es Navidad [2020 Remasterizado]",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/01.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Santa La Noche [2020 Remasterizado]",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/02.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Venid Y Adoremos, Venid Pastorcillos",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/03.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Ven A Mi Corazón Oh Cristo [2020 Remasterizado]",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/04.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Es Navidad",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/05.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Santa La Noche",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/06.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Venid Y Adoremos, Venid Pastorcillos",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/07.mp3",
+artistname:"Rojo",},
+
+{thumbnail:"rojo (11).png",
+songname:"Ven A Mi Corazón Oh Cristo",
+audio:"https://archive.org/download/mc.musica.r/rojo/Album-11/08.mp3",
+artistname:"Rojo",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

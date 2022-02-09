@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"triple_seven (1).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/01.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Vivir Para Ti",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/02.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Combinación Perfecta",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/03.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Gozo Maravilloso",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/04.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"No Me Digas Adiós",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/05.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Fenomenal",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/06.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Quien Como Tu",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/07.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Espectadores",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/08.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Piénsalo Dos Veces",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/09.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Los Lobos",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/10.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Cuidao Con Ella",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/11.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"Vivir Para Ti",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/12.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (1).png",
+songname:"La Carrera",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-01/13.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/01.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Mi Respaldo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/02.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Manteniendo La Diferencia",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/03.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Nada Nos Detiene",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/04.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Nos Vamos De Fiesta",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/05.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"De Lo Más Profundo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/06.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Interlude",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/07.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Bajo Mundo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/08.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Es Triste",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/09.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Vamos Con El Gigante",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/10.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Unidos",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/11.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Todo A Su Tiempo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/12.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Ten Cuidao",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/13.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (2).png",
+songname:"Acéptame",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-02/14.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (3).png",
+songname:"Intro Tranz4mando El Universo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-03/01.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (3).png",
+songname:"Grito De Jubilo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-03/02.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (3).png",
+songname:"Quiero Volver",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-03/03.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (3).png",
+songname:"Yo Iré",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-03/04.mp3",
+artistname:"Triple Seven",},
+
+{thumbnail:"triple_seven (3).png",
+songname:"Tu Reflejo",
+audio:"https://archive.org/download/mc.musica.s-z/triple-seven/Album-03/05.mp3",
+artistname:"Triple Seven",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

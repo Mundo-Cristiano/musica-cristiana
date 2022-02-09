@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"rescate (8).png",
+songname:"Además",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/01.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Buscando Lío",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/02.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Ellos Van",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/03.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Porque Estas Aquí",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/04.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Tiene Razón",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/05.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"El Propósito",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/06.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"No Lo Sé",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/07.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Tu Coche",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/08.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Como Decirte Que No",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/09.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Indudablemente",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/10.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Hello",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/11.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"La Otra Orilla",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/12.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Será Contigo",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/13.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Amor Que Sobra",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/14.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Yo No Abandono",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/15.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Un Poco Loco",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/16.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"El Veneno",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/17.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Loco",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/18.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Deja Que Te Toque",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/19.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Quitamancha",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/20.mp3",
+artistname:"Rescate",},
+
+{thumbnail:"rescate (8).png",
+songname:"Soy José",
+audio:"https://archive.org/download/mc.musica.r/rescate/Album-08/21.mp3",
+artistname:"Rescate",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

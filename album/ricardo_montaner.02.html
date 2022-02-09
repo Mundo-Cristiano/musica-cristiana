@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Viajero Frecuente",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/01.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"La Canción Que Necesito",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/02.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Time",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/03.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Ya No Queda Un Alma",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/04.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Voy A Vivir La Vida",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/05.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Hazme Regresar",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/06.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Convénceme",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/07.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Déjame Soñar",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/08.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"El Centro De La Tierra",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/09.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Te Amo Hasta Siempre",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/10.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"El Piano Nunca Más",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/11.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"Hago Una Poesía",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/12.mp3",
+artistname:"Ricardo Montaner",},
+
+{thumbnail:"ricardo_montaner (2).png",
+songname:"La Gloria De Dios",
+audio:"https://archive.org/download/mc.musica.r/ricardo-montaner/Album-02/13.mp3",
+artistname:"Ricardo Montaner",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

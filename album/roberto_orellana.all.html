@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"roberto_orellana (1).png",
+songname:"Baja A Dios De Las Nubes",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Mi Nuevo Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"La Gran Comisión",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Árbol Sin Raíces",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Adorándote",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Necesito De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Levántate",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Te Alabamos",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Créele",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"El Amigo",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/10.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Libertad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/11.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (1).png",
+songname:"Me Da La Paz",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-01/12.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Jesús Y El Leproso",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Jesús De Nazareth",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Nadie Me Ama Como Tú",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"La Paz De Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Anoche Llegaste Tarde",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Mi Roca Y Mi Castillo",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Soldado De Guerra",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (2).png",
+songname:"Hay Que Seguir Caminando",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-02/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"La Historia De Cristo",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Eterno Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Soy Feliz",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Empezar Otra Vez",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Camino Angosto",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"Que Reine La Paz",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (3).png",
+songname:"No Temeré",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-03/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Un Milagro",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Tal Como Soy",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Por El Poder De Su Palabra",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Escóndeme",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Hombres De Poca Fe",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Regresa A Casa",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Me Ha Llenado",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (4).png",
+songname:"Rey De Mi Vida",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-04/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Mi Vida Está Llena De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Creyendo En Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Un Canto De Esperanza",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Actualidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Gracias Quiero Darte",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Nada Me Apartará De Ti Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Tengo Vida Nueva",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (5).png",
+songname:"Te Alabamos",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-05/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Soy Un Soldado",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Cien Ovejas",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Medley 1 Cantaré Al Señor; Te Exaltaré Mi Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Oh Señor Quiero Que Ardas En Mi Ser",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Medley 2 Apodérate; Bendito Seas Jehová",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Mi Pensamiento Eres Tú Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Medley 3 Como Corren Ríos; Yo Le Alabo De Corazón",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Medley 4 Te Alabarán Oh Jehová; Alabaré A Mi Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (6).png",
+songname:"Medley 5 Bueno Es Alabarte; Gozo Yo Quería; El Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-06/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Navidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Se Acerca La Navidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"El Ángel Le Dijo A María",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Venid Adoremos",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Regala Tu Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Yo Canto",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Gloria A Dios En Las Alturas",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Es Tiempo De Felicidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (7).png",
+songname:"Por Tu Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-07/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Úngeme",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Magnífico",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Confío En Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Tengo Fe",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Te Daré",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Confesión",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Cada Mañana",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (8).png",
+songname:"Unos A Otros",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-08/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Más Sabiduría",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"El Que Habita",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Candelero De Oro",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Cómo Puedes",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"No Hay Dios Como Mi Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Yo Soy Jesús",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Mujer Samaritana",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Si Tú No Estás",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"Sin Dios Viví",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (9).png",
+songname:"El Sándalo",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-09/10.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Estoy Aquí",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Dependo De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"En Una Cruz",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Esta Casa Te Espera",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Que Maravilla",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Honesta Canción",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"La Lluvia Desciende",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Eres Mi Rey",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (10).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-10/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Mi Nuevo Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/01.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Árbol Sin Raíces",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Necesito De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Elevo Mi Canción",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Libertad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Mi Palomita",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Levántate",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Úngeme",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Magnífico",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Confío En Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/10.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Tengo Fe",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/11.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Te Daré",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/12.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Confesión",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/13.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Cada Mañana",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/14.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Unos A Otros",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/15.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Mi Vida Está Llena De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/16.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Creyendo En Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/17.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Actualidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/18.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Tengo Vida Nueva",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/19.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Jesús Y El Leproso",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/20.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Jesús De Nazareth",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/21.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Anoche Llegaste Tarde",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/22.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (11).png",
+songname:"Soy Un Soldado",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-11/23.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Honesta Canción",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/02.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"La Gran Comisión",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/03.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"La Lluvia Desciende",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/04.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Levántate",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/05.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Libertad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/06.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Me Da La Paz",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/07.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Medley Apodérate; Bendito Seas Jehová",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/08.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Medley Bueno Es Alabarte; Gozo Yo Quería; El Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/09.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Medley Cantaré Al Señor; Te Exaltaré Mi Dios",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/10.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Medley Como Corren Ríos; Yo Le Alabo De Corazón",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/11.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Medley Te Alabarán Oh Jehová; Alabaré A Mi Señor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/12.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Necesito De Ti",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/13.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Oh Señor Quiero Que Ardas En Mi Ser",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/14.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Por Tu Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/15.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Que Maravilla",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/16.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Regala Tu Amor",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/17.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Se Acerca La Navidad",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/18.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Te Alabamos",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/19.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/20.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Venid Adoremos",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/21.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Yo Canto",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/22.mp3",
+artistname:"Roberto Orellana",},
+
+{thumbnail:"roberto_orellana (12).png",
+songname:"Gloria A Dios En Las Alturas",
+audio:"https://archive.org/download/mc.musica.r/roberto-orellana/Album-12/23.mp3",
+artistname:"Roberto Orellana",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
