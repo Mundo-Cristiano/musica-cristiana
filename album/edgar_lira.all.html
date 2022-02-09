@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"edgar_lira (1).png",
+songname:"Me Quema",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Perdóname",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Dime Si Eres Tú",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Del Otro Lado Del Río",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Es Lo Mismo",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Pensar En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Una Canción No Bastará",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Donde Te Esconderás",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Quizás Hoy",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"Yo Te Creo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/10.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"No Puedo Vivir Sin Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/11.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (1).png",
+songname:"El Tren",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-01/12.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Contigo Es Así",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Es La Historia",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Yo Le Pregunto",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Como Le Fue",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Toma Mi Vida",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Dime Si Eres Tú",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Sé Que Vendrá",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Te Seguiré",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"La Última Canción",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Déjalo Entrar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/10.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (2).png",
+songname:"Ayúdame",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-02/11.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Yo Le Pregunto",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Como Le Fue",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"La Última Canción",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Por Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Es La Historia",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Contigo Es Así",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Algún Día",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Déjalo Entrar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Dime Si Eres Tú",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/10.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (3).png",
+songname:"Ayúdame",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-03/11.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Me Quema",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Perdóname",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Buscarte",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Es Lo Mismo",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"¿Dónde Te Esconderás?",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Quizás Hoy",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Yo Te Creo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (4).png",
+songname:"Una Canción No Bastará",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-04/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Dónde Te Esconderás",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Perdóname",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Del Otro Lado Del Río",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"El Rey Vendrá",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Pensar En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Dime Si Eres Tú",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Es Lo Mismo",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Una Canción No Bastará",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Déjalo Entrar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (5).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-05/10.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"El Camino De Los Mártires",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"No Voy A Mirar Atrás",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Morir A Mí",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Déjate Amar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Algún Día",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Hay Una Esperanza",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Entre El Cielo Y El Fuego",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"¿Qué Vas A Hacer?",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Muerto Una Vez",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"El Tren",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/10.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (6).png",
+songname:"Puedo Confiar En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-06/11.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Puedo Confiar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Déjate Amar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"El Tren",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Entre El Cielo Y El Fuego",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Morir A Mi",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"No Voy A Mirar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Hay Una Esperanza Para El Mundo Hoy",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Qué Vas A Hacer",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (7).png",
+songname:"Quiero Enamorarme Más De Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-07/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Estaba Lista Para Mi",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/01.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"No Desmayes Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/02.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Mi Clamor",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/03.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Líbrame De Mí",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/04.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Permiso Para Soñar",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/05.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"En Ti Confiaré",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/06.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Nunca Me Dejarás",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/07.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Vuelvo Corriendo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/08.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Sólo Abre Tu Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/09.mp3",
+artistname:"Edgar Lira",},
+
+{thumbnail:"edgar_lira (-8.png",
+songname:"Mi Esperanza",
+audio:"https://archive.org/download/mc.musica.d-f/edgar-lira/Album-08/10.mp3",
+artistname:"Edgar Lira",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

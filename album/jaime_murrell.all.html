@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"jaime_murrell (1).png",
+songname:"Al Que Venció",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Amigo Eterno",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Sálvame",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Si Tu Estas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Nadie Es Como Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Espíritu Santo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Bendice Alma Mia",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Medley",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Mi Única Razón",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Amor Incomparable",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Vamos A Exaltarte",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (1).png",
+songname:"Emanuel",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-01/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Alabe Al Señor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Cristo Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Eres Bendito",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Pon Aceite",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Cantos De Júbilo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Grande Eres Tu",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Cristo, Rey Victorioso",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Quiero Estar Contigo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Mi Alma Anhela Estar",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Así Es Tu Amor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Sólo A Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (2).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-02/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Medley Jehová Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Al Abrigo De Dios",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Exaltado",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Mi Alma Clama",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Eres Mi Señor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"En Jesucristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Tocar Tu Corazón",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Tentado",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (3).png",
+songname:"Da La Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-03/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Gócense Los Cielos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Bendice Al Señor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Cristo Es El Señor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Porque Bueno Es Dios",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"No Hay Amor Como El De Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Acerquémonos A El Juntos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"La Palabra De Dios Es Viva",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Dulce Paz",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Entra Al Lugar Santísimo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Eres Señor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Maravillado Estoy",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Dad Gracias",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (4).png",
+songname:"Porque Bueno Es Dios",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-04/13.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Todo Mi Corazón",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"El Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Adorémosle",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Aquí Estoy, Pt. 1",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Alabanzas Cristianas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Aquí Estoy, Pt. 2",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Cantos De Jubilo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Da La Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Dad Gracias",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Entrégale Tu Vida A Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"En Tu Presencia",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Es El Momento",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Golpes De Espada",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/13.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Grandes Son Tus Maravillas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/14.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Jehová Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/15.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Me Humillo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/16.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Venid Adoremos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/17.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/18.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Manda Fuego",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/19.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Pon Aceite En Mi Vida",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/20.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Oh Moradora De Sion",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/21.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Por Tu Llaga",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/22.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Te Pido La Paz",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/23.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Yo Quiero Más De Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/24.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Yo Te Alabo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/25.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Cantare Aleluya",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Manda Fuego",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Mas Allá Del Corazón",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Cristo Es La Luz",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Nadie Como Tu",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Estoy Clamando",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Me Gloriare",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Necesito Tu Amor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"I'm Surrounded",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (6).png",
+songname:"Yo Me Entrego",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-06/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Me Humillo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"No Hay Otro",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Por Tu Llaga",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Me Rindo Solo Ante Tu Grandeza",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Cantando Alegre Seguiré",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Mi Buen Amigo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Entre Tu Y Yo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Sólo Tu Fuerza",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Hombres De Dios",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (7).png",
+songname:"Entrégale Tu Vida A Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-07/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Prometo Amarte",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Venid Adoremos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Es El Momento",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"No Puedo Más",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Tuyo Soy",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Vivo Para Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Recibe Hoy Mi Amor",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (8).png",
+songname:"Entrégale Tu Vida A Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-08/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Vamos A Exaltarle",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Aclamad",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Dios Subió A Su Trono",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"El Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Por La Sangre",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"De Tal Manera",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Yo Quiero Más De Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"El Nombre De Jesús",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Jesucristo, Mi Rey",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Al Rey De Los Siglos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (9).png",
+songname:"Quiero Alabar",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-09/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (10).png",
+songname:"Oh, Moradora",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-10/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (10).png",
+songname:"Pon Aceite",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-10/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (10).png",
+songname:"Cantos De Jubilo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-10/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Grandes Son Tus Maravillas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Oh, Moradora",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Oh, Ven",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Pon Aceite En Mi Vida",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Cantos De Jubilo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Eres Bendito",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Te Pido La Paz",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Porque Bueno Es Dios",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Venga Tu Reino",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Dios Subió A Su Trono",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Yo Quiero Mas De Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/13.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (11).png",
+songname:"¿A Quién Iré?",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-11/14.mp3",
+artistname:"Jaime Murrell",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

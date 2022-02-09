@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [{thumbnail:"jaime_murrell (5).png",
+songname:"Todo Mi Corazón",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/01.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"El Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/02.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Adorémosle",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/03.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Aquí Estoy, Pt. 1",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/04.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Alabanzas Cristianas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/05.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Aquí Estoy, Pt. 2",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/06.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Cantos De Jubilo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/07.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Da La Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/08.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Dad Gracias",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/09.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Entrégale Tu Vida A Cristo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/10.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"En Tu Presencia",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/11.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Es El Momento",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/12.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Golpes De Espada",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/13.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Grandes Son Tus Maravillas",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/14.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Jehová Reina",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/15.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Me Humillo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/16.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Venid Adoremos",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/17.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Toma Mi Mano",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/18.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Manda Fuego",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/19.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Pon Aceite En Mi Vida",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/20.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Oh Moradora De Sion",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/21.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Por Tu Llaga",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/22.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Te Pido La Paz",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/23.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Yo Quiero Más De Ti",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/24.mp3",
+artistname:"Jaime Murrell",},
+
+{thumbnail:"jaime_murrell (5).png",
+songname:"Yo Te Alabo",
+audio:"https://archive.org/download/mc.musica.j/jaime-murrell/Album-05/25.mp3",
+artistname:"Jaime Murrell",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

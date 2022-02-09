@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Vamos A Cantar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Infinito Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Hermoso Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Jesús El Mesías",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Sublime Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"La Gloriosa Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Alaba Al Padre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Sólo De Jesús La Sangre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"Mi Dios Es Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (1).png",
+songname:"En Tu Presencia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-01/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Mas Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Cantamos Aleluya",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Me Asombras",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Me Dice El Salvador",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Eres La Luz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Y Vimos Tu Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Abba Padre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Gracia Sublime Es",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Tu Eres Santo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (2).png",
+songname:"Espíritu Santo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-02/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Abre Los Ojos De Mi Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Glorioso Rey",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Abre El Cielo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Por Siempre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Verte En Verdad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Yahveh",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Espontáneo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Agnus Dei",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Llamado De Salvación",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Oh, Gloriosa Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Rey De Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (3).png",
+songname:"Solo Me Imagino",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-03/13.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Gloria A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Tu Eres Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Todo Poder",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Por La Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Has Hallado Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Toma Todo De Mi",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Majestad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Cristo Yo Te Amo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Arrebátame",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Rain Down",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (4).png",
+songname:"Haznos Uno",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-04/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Los Santos",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Rodeas La Eternidad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"En Tu Luz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Generación Que Danza",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Glorioso Rey",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Dios Es Rey",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Espontáneo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Perfume A Tus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Me Dice El Salvador",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Rey De Justicia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (5).png",
+songname:"Cuan Grande Es Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-05/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Es Tiempo De Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Resucitó",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Ha Vencido",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Rio",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Haz Llover",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Deja Tu Gloria Caer",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Reposa En Este Lugar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Precioso Cordero",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Acércate",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Ha Triunfado, Ha Vencido",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Griten A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Digno Es El Señor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Majestad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/13.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Rey De Misericordia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/14.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Espíritu Y La Novia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/15.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Glorioso Cristo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/16.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Abiertos A Tu Verdad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Aquí Estamos Para Ti",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Somos Libres",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Dios Es Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Perla De Gran Precio",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"¿Quién Podrá Creer?",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Nuestro Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Tuyo Soy",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"El Gran Yo Soy",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Más Grande Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Santo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (7).png",
+songname:"Incontenible Es Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-07/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"En Tu Luz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Te Doy Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Fuente De Salvación",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Torre Fuerte",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Desde Mi Interior",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Sólo Tu Eres Santo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Espontáneo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Quién Como El",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Espontáneo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Solo Dios Puede Salvar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Veo Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (8).png",
+songname:"Espontáneo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-08/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Él Es Vida",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"No Puedo Callar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Emmanuel",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Hijo De Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Confiadamente",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Vivo Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Fue Tu Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Rojo Fue Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Por Siempre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (9).png",
+songname:"Ven Con Tu Fuego",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-09/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"¡Resplandeció!",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Creador De Vida",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Venid A Las Aguas",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Gracia Sublime Es",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Habitación",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Incontenible Es Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Tomaste Mi Lugar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Jesús Hijo De Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Este Eres Tu",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (10).png",
+songname:"Perla De Gran Precio",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-10/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Oh Cuan Glorioso Día",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Había Una Tumba",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Esperanza De Vida",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Vuelvo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Te Seguiremos",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Habitación",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Eres La Luz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Hermoso Nombre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Tu Gloria Puedo Ver",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (11).png",
+songname:"Su Voz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-11/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Día Feliz",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Tenemos Libertad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Viene Un Rey",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Rey Humilde",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Es Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Vemos Tu Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Cubiertos Por Tu Sangre",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Cuanto Nos Ama",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (12).png",
+songname:"Trae Tu Reino",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-12/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

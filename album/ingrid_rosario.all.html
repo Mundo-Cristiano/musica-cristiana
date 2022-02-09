@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Que La Paz De Dios Reine",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Creo en La Promesa",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Gente Como Tú y Yo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Cristo Cristo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Nunca Más Seré",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Cristo Tú Me Has Amado",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Enséñame Oh Dios",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Su Poder Te Bastará",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"El Poder De Tu Amor",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Este Reino",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Padre De La Creación",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/11.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (1).png",
+songname:"Canta AL Señor",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-01/12.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Que Se Llene Tu Casa",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Te Alabamos Dios",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"La Tierra Te Alabará",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"En Mi Vida",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Abre los Cielos",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Majestad",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Tus Palabras",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Te Bendeciré",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Digno Y Santo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Tu Eres Santo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Cuan Gran Amor",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/11.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Envíame",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/12.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (2).png",
+songname:"Te Alabamos Dios",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-02/13.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"No Dejaré De Hablar",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Fe",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Vence En Mi",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Todo Lo Que Respira",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Te Amo Tanto",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Paso A Paso",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Donde Vayas",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Grítalo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Dices",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Este El Dia",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Como Lluvia",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/11.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Ven Es Tiempo De Adorarle",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/12.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (3).png",
+songname:"Solo Tú",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-03/13.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Intro Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Venimos Para Adorarte",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Fe",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"He Visto Tu Fidelidad",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"O, Tu Fidelidad Himno",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Jesús, Vengo a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Yo Me Rindo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Adoración Espontáneo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"En La Intimidad",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/11.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (4).png",
+songname:"Avivamiento",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-05/12.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"En Mí",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Él es Jesús",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Eres Tú",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Yo Me Rindo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Eres Mi Respirar",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Quiero Estar En Tu Presencia",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"A Solas Con Él",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Salvación Para Mí",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"El Poder De Tu Amor",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (5).png",
+songname:"Puedo Alcanzar",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-06/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Dios Fuerte",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/01.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Tu Eres Rey",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/02.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Vamos A Entrar",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/03.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Cantamos Aleluya",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/04.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Nadie Como Dios",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/05.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"En La Intimidad",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/06.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Soy Amante De Tu Presencia",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/07.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Mi Vida Te Daré",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/08.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Cantaré, Tu Eres Santo",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/09.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Oh La Sangre",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/10.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/11.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Perdonado Por Siempre",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/12.mp3",
+artistname:"Ingrid Rosario",},
+
+{thumbnail:"ingrid_rosario (6).png",
+songname:"Libre Soy ",
+audio:"https://archive.org/download/mc.musica.g-i/ingrid-rosario/Album-07/13.mp3",
+artistname:"Ingrid Rosario",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

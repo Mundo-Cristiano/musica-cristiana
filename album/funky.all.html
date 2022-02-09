@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"funky (1).png",
+songname:"Ella Quiere Que La Miren",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"No Vuelvo Pa' Trás",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Decídete",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Súbelo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Lo Que Traigo Es Flow",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Síguelo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Seguimos Activao",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Ayúdame",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Me Está Matando",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Mi Maestro",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Que Siga La Fiesta",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (1).png",
+songname:"Pon Atención",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-01/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Introducción",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Tiene Que Correr",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Pon Atención",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Interlude",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Especie En Peligro",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Mi Maestro",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Que Siga La Fiesta",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Anoche Llegaste Tarde",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Necesitamos De Él",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"El Que Nunca Falla",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Nuevamente En Escena",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Hasta El Final",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Tiene Que Correr",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/13.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Dale La Mano",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/14.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (2).png",
+songname:"Unidos",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-02/15.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Es Imposible",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Eres Mi Bendición",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Fiel",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Mi Peor Error",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Invencible",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Entre Tus Brazos",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Como No Voy A Creer",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Se Nota En Tus Ojos",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"No Te Enredes",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Cicatriz",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (3).png",
+songname:"Va A Caer La Lluvia",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-03/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Más",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Yo Soy Así",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"No Me Conformo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Como Lo Haces Tú",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Me Falta Tu Amistad",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Ven Conmigo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Su Mirada",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Virus",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Fama",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Más Bajas Más Subes",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Todavía",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (4).png",
+songname:"Heme Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-04/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Hoy",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"No Te Cambio",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"No Funciona",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Dale Pal Monte",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Corazones Puros",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Heme Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Llego El Cocorote",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Solo Tu",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Yo Ganare",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Ella Quiere Que La Miren",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Justo A Tiempo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"El Rankiaito",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/13.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"No Me Hablen De Problemas",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/14.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (5).png",
+songname:"Dale Pal Monte",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-05/15.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Intro MLQHD",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/01.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"MLQHD",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/02.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Bye Bye",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/03.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"No Lo Digas",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/04.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"La Princesa Y El Sapo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/05.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"UNO",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/06.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"A Pesar De Mí",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/07.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Mata Pero Vende",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/08.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Acá Entre Nos",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/09.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Clamo",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/10.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Cruzaré",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/11.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Quita Y Pon",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/12.mp3",
+artistname:"Funky",},
+
+{thumbnail:"funky (6).png",
+songname:"Lucas 23.32 ",
+audio:"https://archive.org/download/mc.musica.d-f/funky/Album-06/13.mp3",
+artistname:"Funky",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

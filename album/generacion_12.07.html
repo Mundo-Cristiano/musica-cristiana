@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Apasionas",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Escogiste",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Bajo Control",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Somos Uno",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Mi Manantial",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Eres Santo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Vengo a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Darte Gracias",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Cantaré",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Daré Todo Por Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Quiero Más",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Eres Mi Canción",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Vuelvo a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"A Tus Pies",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/14.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Vives En Mi",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/15.mp3",
+artistname:"Generación 12",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

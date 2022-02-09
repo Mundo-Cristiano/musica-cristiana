@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Es Tiempo De Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/01.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Resucitó",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/02.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Ha Vencido",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/03.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Rio",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/04.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Haz Llover",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/05.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Deja Tu Gloria Caer",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/06.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Reposa En Este Lugar",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/07.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Precioso Cordero",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/08.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Acércate",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/09.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Ha Triunfado, Ha Vencido",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/10.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Griten A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/11.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Digno Es El Señor",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/12.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Majestad",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/13.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Rey De Misericordia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/14.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"El Espíritu Y La Novia",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/15.mp3",
+artistname:"En Espíritu Y En Verdad",},
+
+{thumbnail:"en_espiritu_y_en_verdad (6).png",
+songname:"Glorioso Cristo",
+audio:"https://archive.org/download/mc.musica.d-f/en-espiritu-y-en-verdad/Album-06/16.mp3",
+artistname:"En Espíritu Y En Verdad",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

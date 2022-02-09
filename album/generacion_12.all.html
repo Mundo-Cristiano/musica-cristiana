@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"generacion_12 (1).png",
+songname:"Avívanos",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Tu amor me atrae",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Examíname",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Dios incomparable",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Espíritu, ven",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Tan solo una gota",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Esperándote",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Trae tu libertad",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Proclamamos",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Seguro estoy",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Grandes cosas",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Padre de naciones",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (1).png",
+songname:"Despierta mi corazón",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-01/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"El Llamado",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Ahí Estás Tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Ven y Lléname",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Abres Camino",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Para Siempre",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Quién Como Tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Bienvenido",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Ven Como Eres",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (2).png",
+songname:"Nada Más",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-02/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Aliento De Vida",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Amanecer",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Emanuel",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Encuentro Glorioso",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Majestad",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Revélame Tu Majestad",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Tu Voz",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Dulce Espíritu",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (3).png",
+songname:"Bajo Tu Sombra",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-03/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"El Llamado",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Esto Es un Avivamiento",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Dios Conmigo Estás",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Me Decidí por Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Quién Como Tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Ven y Lléname",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Bienvenido",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Ven Como Eres",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Yo Te Seguiré",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Nada Más",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Para Siempre",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Abres Camino",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Ahí Estás Tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Hasta el Final",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/14.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (4).png",
+songname:"Unidos Somos Más Fuertes",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-04/15.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Corro a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Dios Incomparable",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Hay Poder",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Eres Santo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Tu Amor Me Conquistó",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Despierta Mi Corazón",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (5).png",
+songname:"Ven y Lléname",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-05/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Sea La Luz",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Que Tu Espíritu Descienda",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Permaneceré En Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"La Nube De Tu Gloria",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Hay Poder",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Tu Amor No Tiene Fin",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Bautízame",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"No Soy Esclavo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Milagros",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Libre Soy",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Primer Amor",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Es Tiempo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Como En El Cielo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (6).png",
+songname:"Todo Aquel",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-06/14.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Apasionas",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Escogiste",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Bajo Control",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Somos Uno",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Mi Manantial",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Eres Santo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Vengo a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Darte Gracias",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Cantaré",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Daré Todo Por Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Quiero Más",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Eres Mi Canción",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Me Vuelvo a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"A Tus Pies",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/14.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (7).png",
+songname:"Vives En Mi",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-07/15.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Tus Pensamientos",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Eres Tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Con Tu Voz",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Cristo Te Amo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Cuán Grande Es Él",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"No Hay Otro Lugar",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Todo Lo Haces Nuevo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Tus Caminos",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Nunca Me Avergonzaré",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Es Tu Amor",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Ya No Vivo Yo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"La Sangre De Jesús",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/12.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Cuanto Más Me Rindo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/13.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/14.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (8).png",
+songname:"Tu Nombre Santo Es",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-08/15.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Eres tú",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Ya No Vivo yo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Cuánto Más Me Rindo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Es tu Amor",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Cristo Te Amo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Todo lo Haces Nuevo",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"Con tu Voz",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (9).png",
+songname:"No Hay otro Lugar",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-09/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Corro a Ti",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/01.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Manda El Fuego",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/02.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Tu Nos Salvarás",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/03.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Tu Amor Es La Llama",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/04.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Pon Un Fuego",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/05.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Revélame Tu Majestad",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/06.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Dulce Espíritu",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/07.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Quiero Alabarte",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/08.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Por Siempre",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/09.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Una Nueva Historia",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/10.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Manda Tu Lluvia",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/11.mp3",
+artistname:"Generación 12",},
+
+{thumbnail:"generacion_12 (10).png",
+songname:"Hemos Vencido",
+audio:"https://archive.org/download/mc.musica.g-i/generacion-12/album-10/12.mp3",
+artistname:"Generación 12",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
