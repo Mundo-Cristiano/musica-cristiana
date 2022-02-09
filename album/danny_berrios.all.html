@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"danny_berrios (1).png",
+songname:"La Alegría Del Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Ahora Es La Hora",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"La Gloria Es De Él",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Dios Cuida De Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Mi Cristo Vive",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Ofrenda Agradable",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Alaba A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Tomando De La Fuente",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Me Diste Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"El Shaddai",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Gloria A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/11.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Juntos Venceremos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/12.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Escribiendo Victoria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/13.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Himno De Victoria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/14.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Hombre De Fuego",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/15.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Alaba A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/16.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Momento Triunfal",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/17.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (1).png",
+songname:"Alaba A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-01/18.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Momento Triunfal",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"La Gloria Es De Él",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Nadie Te Detendrá",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Escribiendo Victoria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Hombre De Fuego",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Jesús Abrió La Puerta",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"Nadie Me Impedirá",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (2).png",
+songname:"El Don De Vida",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-02/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Aférrate A La Fe",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Todo Lo Puedo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Dile A Ese Gigante",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Adicto A Su Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"No Puedo Callarme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Ponte En Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Tiempo De Honra",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Yo Declaro",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (3).png",
+songname:"Descansa Y Espera",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-03/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Rey De Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Después De Llover",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Mi Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Cuando Me Diste Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Agua Viva",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Prométeme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Amar Unos A Otros",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (4).png",
+songname:"Dios Me Devolvió Mi Mañana",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-04/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Tú Me Conoces",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Doquiera Que Yo Voy",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Porque Él Nos Ama",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Gran Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Confiar En Él",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Canaán",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (5).png",
+songname:"Mañana",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-05/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Él Llegó",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Dios Está Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Tiempo De Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Autoridad Divina",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Una Cuestión De Fe",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Perdonado",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Novia Rescatada",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"De Fe En Fe",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (6).png",
+songname:"Juntos Venceremos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-06/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Tu Mejor Momento",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Ofrenda Agradable A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Mi Cristo Vive",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Alaba A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"La Alegría Del Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Dios Cuida De Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Himno De Victoria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (7).png",
+songname:"Para El Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-07/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Dios Se Está Moviendo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Dulce Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Bendice A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Con Cada Latido",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Puedo Empezar Otra Vez",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Yo Estoy Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (8).png",
+songname:"Jesús, Tú Eres Mi Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-08/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Él Es Jehová",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"El Buen Pastor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Isaías 28:16",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Lo Hiciste Por Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Alto Y Lejos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"El Shaddai",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Yo Vivo En Las Manos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Yo Te Amaré Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Qué Majestuoso Es Tu Nombre",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (9).png",
+songname:"Señor De Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-09/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"Adicto A Su Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"Dime Serás Tú",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"El Mismo Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"Yo Te Seguiré",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"El Me Salvó",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"Aprendiendo A Confiar En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"No Llores Más",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (10).png",
+songname:"Que Llueva Otra Vez",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-10/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"El Mensaje De La Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"La Palabra",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Corro A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Todo Es Posible",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Por Tu Palabra",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Levántate",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Envuélveme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (11).png",
+songname:"Ven Y Corre",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-11/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Ahora Es La Hora",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"El Secreto Es Alabar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Rayo De Luz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Con Mucha Unción",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Entrégalo Al Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Quién Es Este",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"El Dios A Quien Yo Sirvo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (12).png",
+songname:"Amigo De Fe",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-12/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Gloria A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Me Distes Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Da Un Poco Mas De Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"A Dios Sea La Gloria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Bendición",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Mi Dios Es Real",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Morir Para El Mundo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"El Murió En Aquella Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Mi Corona El Llevo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Dulce Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/11.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Benice Adiós",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/12.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Puedo Empezar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/13.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Yo Estoy Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/14.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (13).png",
+songname:"Jesús Eres Mi Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-13/15.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Yo Soy",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Esperar En El Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Yo Vivo Para Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Ama A Tu Hermano",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Canto A Mi Padre",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Juntos Venceremos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Somos Sus Manos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"No Sé Qué Haría Yo Sin Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (14).png",
+songname:"Tus Cargas El Llevará",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-14/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Cielo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Cúbreme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Solo En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"El Mira Tu Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Levanta La Luz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Sacrificio A Él",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Y Tú Sabes Bien",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (15).png",
+songname:"Brazos De Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-15/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Gloria A Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Me Diste Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Tomando De La Fuente",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"No He Visto Justo Desamparado",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Él Es Jehová",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"El Shaddai",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Juntos Venceremos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Un Canto A Mi Padre",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Mañana",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Sigo Confiando En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/11.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (16).png",
+songname:"Por Siempre Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-16/12.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Levanta La Luz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Cúbreme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Sacrifico A Él",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Dios Se Está Moviendo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Gracias",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Puedo Empezar Otra Vez",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Adicto A Su Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"El Me Salvó",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Aprendiendo A Confiar En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Sólo En Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Postrado A Sus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/11.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (17).png",
+songname:"Lo Que Le Agrada",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-17/12.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Salmo 100",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Yo Quiero Ser Como Tú",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Él Ha Sido Fiel",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Hay Perdón",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Nací Para Adorar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Los Que Esperan A Jehová",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Padre Ayúdame",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (18).png",
+songname:"Ven A Cristo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-18/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"No Puedo Callarme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Como Tú No Hay Otro",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Sigo Confiando En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Solo No Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Por Siempre Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Déjalo Entrar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Busca Otro Camino",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (19).png",
+songname:"Siempre Unidos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-19/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Al Revés",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Por Qué",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Postrado A Sus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Que Le Agrada Más",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Sólo En Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Hosanna",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Sólo Por Tu Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (20).png",
+songname:"Volver A Empezar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-20/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Todos Los Días Es Navidad",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Alabanza Navideña",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Pequeña Aldea De Belén",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Belén Ciudad Dichosa",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Hoy Es Navidad",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Noche De Paz",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Qué Niño Es Este",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (21).png",
+songname:"Venid Y Adoremos",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-21/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Tomando De La Fuente",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Soldado De Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Resucitaré",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Si Tú Estás En Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Él Te Ayudará",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Oye, Diablo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Un Canto Para Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Prefiero Creer En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"Trompeta De Cristo",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (22).png",
+songname:"No He Visto Justo Desamparado",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-22/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Seguir Con Fe",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/01.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Canto De Victoria",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/02.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"La Gloria De Jehová",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/03.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"El Rey Te Mandó Llamar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/04.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Voy A Profetizar",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/05.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Sáname",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/06.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"De Rodillas",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/07.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Pasé Por El Valle",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/08.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Mi Corona Llevó",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/09.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Resucitaré",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/10.mp3",
+artistname:"Danny Berrios",},
+
+{thumbnail:"danny_berrios (23).png",
+songname:"Cúbreme",
+audio:"https://archive.org/download/mc.musica.d-f/danny-berrios/Album-23/11.mp3",
+artistname:"Danny Berrios",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

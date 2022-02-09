@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"danilo_montero (1).png",
+songname:"Te Alabaré Mi Buen Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Bueno Es Alabar",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Alabad A Jehová",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Admirable",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Has Aumentado",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Hoy Y Siempre Te Alabaré",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Con Mis Manos Levantadas",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Tu Eres Real",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Dulce Refugio",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Hay Momentos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (1).png",
+songname:"Sentado En Su Trono",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-01/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"La Casa De Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Es Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Cuanto Amo Tu Ley",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Fue En La Cruz",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Jesucristo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Dulce Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Una Ves Mas",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Cantaré De Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Te Adoro Señor Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (2).png",
+songname:"Es Día De Jubileo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-02/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Celebrad A Cristo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Señor Venimos Ante Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Su Nombre Levantad",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"El León De Judá",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Gloria Y Honor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Derrama Tu Espíritu",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (3).png",
+songname:"Te Adoro Cara A Cara",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-03/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Me Gusta Estar En Tu Casa",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Celebrad Al Dios De Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Tu Nombre Levantaré",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Gloria Y Alabanza",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Salmo 119",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Cristo Tu Triunfo Celebramos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Te Alaben Salmo 67",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Todo Mi Vida",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Es Por Tu Espíritu",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Oh, La Sangre De Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"El Es Tierno",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Nadie Como Tú",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/12.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (4).png",
+songname:"Canta Al Señor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-04/13.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Palabras De Danilo Montero",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Tú Eres Real",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Dulce Refugio",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Al Estar Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Cantaré De Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"El Señor Es Mi Pastor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Hay Momentos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Sentado En Su Trono",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Junto A Sus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Con Mis Manos Levantadas",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (5).png",
+songname:"Solo Jesús Que Está En Mi",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-05/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"La Casa De Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Él Es El Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Eres Todopoderoso",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Te Alabaré Mi Buen Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Plática 1",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Padre En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Canto Espontáneo 1",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Padre En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Junto A Tus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Siempre Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Cantaré De Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Plática 2",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/12.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Damos Honor A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/13.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Canto Espontáneo 2",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/14.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Sentado En Su Trono",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/15.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (6).png",
+songname:"Fiesta Hay En El Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-06/16.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Se Quien Soy Yo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Eres Suficiente",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Unidos Por Su Sangre",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Bendito Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Introducción A Salmo 84",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Salmo 84",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Ven A Este Lugar",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Revelación",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Glorifícate",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Ministración",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Preludio De Arpa",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/12.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/13.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Desde El Cielo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/14.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (7).png",
+songname:"Vuelo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-07/15.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Isaías 40",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Todo Lo Has Cambiado",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Hermosa Heredad",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Iré Contigo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Fiel Y Verdadero",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Más Que Vencedor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Cree Solamente",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"El Héroe De La Historia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (8).png",
+songname:"Tu Amor Es Inagotable",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-08/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Todo Lo Que Respira",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Echad La Hoz",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Que Tu Río Fluya",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Los Que Esperan",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Él Es El Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Eres Todopoderoso",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Sólo Jesús Que Está En Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Usa Mi Vida",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"El Señor Es Mi Pastor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Junto A Tus Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (9).png",
+songname:"Al Estar Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-09/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Porque Para Siempre",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Eres Bueno",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Tú Eres Rey",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Enséñame A Hacer Tu Voluntad",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Fuerza De Vida",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"En Tu Presencia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Tú Misericordia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Adoración Viva",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Preciosa Gracia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (10).png",
+songname:"Te Proclamamos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-10/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Qué Dulce",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Padre En Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Refréscanos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Fortaleza",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Medley De Adoración",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Aquí Estoy",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"El Que Lavó Mis Pies",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Haz Llover",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Es Grande",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (11).png",
+songname:"Pausa En La Eternidad",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-11/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Solo En Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"La Carta Perfecta",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Dios De Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Dios Me Ama",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Mi Dios Es Refugio",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"El Mismo Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Correré",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Tu Gracia Es Suficiente",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"Jesús En El Centro",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"En Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (12).png",
+songname:"La Carta Perfecta",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-12/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Cuando Esta Iglesia Ora",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Este Es El Día",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Vuelvo A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Eres Todopoderoso Popurrí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Bueno Estamos Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Te Alabare Popurrí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"¿A Quién Tengo Yo?",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Yo No Se Vivir Sin Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Cantaré De Tu Amor Popurrí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"El Señor Es Mi Pastor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (13).png",
+songname:"Llena Todo En Mi",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-13/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Te Alabaré",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Bueno Estamos Aquí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Unidos Por Su Sangre",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"¿A Quién Tengo Yo?",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"El Señor Es Mi Pastor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Yo No Sé Vivir Sin Jesús",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Llena Todo En Mí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Popurrí Cantaré De Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Cuando La Iglesia Ora",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (14).png",
+songname:"Eres Todopoderoso Popurrí",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-14/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Preludio",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Quiero Proclamar",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Sígueme",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Te Alabo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Dios",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Juntos",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Saltando",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"En Tu Abrazo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Libre",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Directo Al Corazón",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (15).png",
+songname:"Yo Confío",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-15/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Nada Soy Sin Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/01.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Siempre Estarás",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/02.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Desesperado",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/03.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Eres Tu",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/04.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/05.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Amor Perfecto",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/06.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/07.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Amor Eterno",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/08.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Amor Firme",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/09.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/10.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Todo Es Tuyo",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/11.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"A Ti",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/12.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Cuan Hermoso",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/13.mp3",
+artistname:"Danilo Montero",},
+
+{thumbnail:"danilo_montero (16).png",
+songname:"Siento Tu Dulce Presencia",
+audio:"https://archive.org/download/mc.musica.d-f/danilo-montero/Album-16/14.mp3",
+artistname:"Danilo Montero",},
+]
+    </script>
+
+<script src="mc-script.js"></script>

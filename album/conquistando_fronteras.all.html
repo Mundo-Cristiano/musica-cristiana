@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Cielo Y Tierra",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Asombroso Dios",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Tú Eres Bueno",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Por Tu Gloria",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Ríos De Agua Viva",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Abba Padre",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Intercesión",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"El Gran Yo Soy",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (1).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-01/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Voy Cantando",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Altísimo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Sopla",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Gloria Y Majestad",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Soy Bendecido",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Rompe El Cielo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Cuan Asombrosas Son Tus Obras",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Mi Tributo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Adorándote",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Resucita",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (2).png",
+songname:"Danza",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-02/11.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Amor Y Verdad",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Todo Nuevo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"No Te Detendrás",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Abre Los Cielos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Espontaneo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Resucito",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Todo Rindo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Espontaneo 2",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Abba Padre",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Agua Viva",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/11.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Emanuel",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/12.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (3).png",
+songname:"Habitando En Las Alturas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-03/13.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Alzo Mis Manos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Hermoso Dios",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"La Nube De Tu Presencia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Hacedor De Milagros",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Cordero Y León",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Habitando En Las Alturas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Puedo Ver",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Profecía",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Damos Gloria Al Que Vive",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Toda Gloria",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (4).png",
+songname:"Libre Soy",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-04/11.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Te Doy Gloria",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Grande Es Él",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Cristo Vive",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Danzando Sobre La Injusticia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Trae Tu Reino",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Es Para Ti",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Intercesión Por Las Naciones",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"La Roca",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (5).png",
+songname:"Tu Eres La Causa",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-05/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Gozo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Gloria Shekhiná",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Dios Inconmovible",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Al Que Está Sentado En El Trono",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"En Tu Altar",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Óleo De Gozo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Padre Nuestro",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Coronas A Tus Pies",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (6).png",
+songname:"Habitando En Las Alturas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-06/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Himno De Las Naciones",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Enciende Un Fuego",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Hoy Es El Tiempo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Habitando En Las Alturas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Aleluya Al Cordero",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Puente",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (7).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-07/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Alzo Mis Manos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Cantos De Gozo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Mi Socorro Está En Ti",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Hoy Te Puedo Ver",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Cordero Y León",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Tú Eres La Fuente",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Emanuel",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Where You Are",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"Eterna Luz",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (8).png",
+songname:"En El Monte Calvario",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-08/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Un Sonido",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Nada Me Podrá Separar",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Enciende Un Fuego",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Solo Quiero Arder",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Nada A Que Aferrarse",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Amo Tu Presencia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Muéstrame A Cristo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Todo Cambia Con Tu Amor",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (9).png",
+songname:"Estoy Bien",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-09/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Revélanos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Nombre Sobre Todo Nombre",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Ven Y Hazlo Otra Vez",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Intro",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Danzando Sobre La Injusticia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"El Conocerte A Ti Es El Bien",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Tengo Libertad",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Atraem",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Te Amamos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (10).png",
+songname:"Clamor De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-10/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Mi Refugio",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Mi Universo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Supe Que Me Amabas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"El Padre Que Siempre Soñé",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Dame Tus Ojos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Derroche De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"El Mismo Cielo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Lo Único Que Quiero",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Decide Mi Interior",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Contigo Quiero Caminar",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Como Río En Primavera",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/11.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Veo Llover",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/12.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Dios Me Ama",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/13.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"El Brillo De Mis Ojos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/14.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Dios Es Amor",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/15.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"The Time Has Come",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/16.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Rey Infinito",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/17.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Un Cántico Nuevo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/18.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Jesús En El Centro",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/19.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Viviré",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/20.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Tu Amistad Me Hace Bien",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/21.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"El Paraguas",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/22.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Eres Mi Salvador",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/23.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Se Trata De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/24.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Hambre Por El Dios Vivo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/25.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Rindo Mi Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/26.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Cuando Una Lágrima Cae",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/27.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Estar Contigo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/28.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Postrado",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/29.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Cerca De Jesús",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/30.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Como Tú No Hay Nadie",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/31.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Hallelujah",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/32.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Tu Nos Salvarás",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/33.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Algo Más",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/34.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (11).png",
+songname:"Kingdom Come",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-11/35.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Danzaré",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Vamos A Cantar",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Dios De Esta Ciudad",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Sube Más Alto",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Jesús Resucitó",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Jesús Mesías",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Toma Todo De Mí",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Cuanto Nos Ama",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Todo Es Posible",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (12).png",
+songname:"Agradándote",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-12/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Introducción",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/01.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Un Sonido",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/02.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Dios De Gracia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/03.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"No Te Alegres Enemigos",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/04.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Generación Que Danza",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/05.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Me Inunda Tu Gloria",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/06.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Tesoro Eterno",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/07.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Cuan Grande Es Dios",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/08.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Cada Cosa De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/09.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Cordero Santo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/10.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"El Cielo Se Abrió",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/11.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Mi Anhelo Es Tu Presencia",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/12.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Te Amo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/13.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Iré En Pos De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/14.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Te Amo, Te Anhelo",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/15.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Sonido De Adoración",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/16.mp3",
+artistname:"Conquistando Fronteras",},
+
+{thumbnail:"conquistando_fronteras (13).png",
+songname:"Es Una Fiesta",
+audio:"https://archive.org/download/mc.musica.a-c/conquistando-fronteras/Album-13/17.mp3",
+artistname:"Conquistando Fronteras",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
