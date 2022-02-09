@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+        {thumbnail:"abel_zavala (1).png",
+songname:"Él Es El Único Dios",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/01.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Se Oye Una Nueva Canción",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/02.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Quiero Decirle Al Mundo",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/03.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Ante El Señor",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/04.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Te Pertenezco",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/05.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"A Ti Sea La Gloria",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/06.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Quiero Agradecerte",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/07.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Péinate, El Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/08.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Tómame En Tus Brazos",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/09.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (1).png",
+songname:"Al Único Y Sabio Dios",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album1/10.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Unánimes",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/01.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"El Gozo Del Señor",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/02.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Alaben Su Nombre",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/03.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"No Temeré",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/04.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Exaltad",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/05.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Dispuesto Estoy",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/06.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Enamórame",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/07.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Jesús Mi Fiel Amigo",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/08.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (2).png",
+songname:"Palabras De Verdad",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album2/09.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"El Padre Que Siempre Soñé",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/01.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Veo Llover",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/02.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Viviré",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/03.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Lo Único Que Quiero",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/04.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Estar Contigo",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/05.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Nueva Historia",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/06.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"No Hace Falta",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/07.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Deseado De Mi Alma",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/08.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Es Hora De Volver",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/09.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (3).png",
+songname:"Listo Para Nuestro Encuentro",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album3/10.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Serviremos Al Señor",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/01.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Ven A Mi Casa",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/02.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"La Flor Más Hermosa",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/03.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Quiero Estar Presente",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/04.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Te Llamas Amor",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/05.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Ser Un Adorador",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/06.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Hasta El Desierto",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/07.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"La Luz Del Día Llegará",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/08.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Fuiste Tú Mi Amanecer",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/09.mp3",
+artistname:"Abel Zavala",},
+
+{thumbnail:"abel_zavala (4).png",
+songname:"Al Creer En Ti",
+audio:"https://archive.org/download/mc.musica.a-c/abel-zavala/Album4/10.mp3",
+artistname:"Abel Zavala",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

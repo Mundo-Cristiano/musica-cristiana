@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"alex_campos (1).png",
+songname:"Allí Está El",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Me Dijo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Dime",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Que Pasa",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Nube De Colores",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Cielo Perdido",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Nada Mas Quien Piensas",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Sueño De Morir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"El Sonido Del Silencio",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Fiel",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Vuelve Pronto",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"La Fruta Prohibida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/13.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (1).png",
+songname:"Miraré Al Cielo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-01/14.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"La Fruta Prohibida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Me Veo Y Te Veo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Deus",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Mi Fiesta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Dímelo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Regreso A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Si Estoy Contigo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Suave Voz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Junto A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Fiel",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Sueño De Morir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Me Robaste El Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Lo Que Buscas De Mí",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/13.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (2).png",
+songname:"Tu Amistad Me Hace Bien",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-02/14.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Si Yo Te Dejo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Te Vengo A Decir, Pt. 1",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Qué Eres Para Mí",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Tan Lejos, Tan Cerca",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Tú Conoces",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"La Fruta Prohibida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Me Amas",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Amigos",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Allí Quiero Estar",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Vivir Con Él",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Prefiero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Dime",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/13.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (3).png",
+songname:"Te Vengo A Decir, Pt. 2",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-03/14.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Este Muerto No Llevo Más",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Tu Amistad Me Hace Bien",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"El Sonido Del Silencio",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Vuelve",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Cuando Una Lágrima Cae",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Vives Tu Vivo Yo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Derroche De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Tu Poeta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Cómo El Color De La Sangre",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Sueño De Morir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Te Puedo Sentir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (4).png",
+songname:"Regreso A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-04/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Sueño De Morir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Eres Mi Sol",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Quiero, Siento Y Pienso",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Estoy Harto",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Dios Creó",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Tú Eres",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Corro A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"10 De Septiembre",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"El Abuelo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Miraré Al Cielo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"No Es Un Misterio",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (5).png",
+songname:"Pinta El Mundo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-05/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Como El Color De La Sangre",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Junto A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Tu Planeta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Te Estoy Esperando",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Yo No Temeré",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Cuidaré De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Tu Poeta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Tu Amor Y Mi Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Dímelo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Come On",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Te Quiero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (6).png",
+songname:"Más Que Ayer",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-06/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Por Escuchar Tu Voz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Cuando Una Lágrima Cae",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Derroche De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Mi Fiesta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Deus",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Reflejo De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Si Estoy Contigo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Vuelve",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Te Respiro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Lo Que Buscas De Mí",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (7).png",
+songname:"Como Lluvia",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-07/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Vives Tu, Vivo Yo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Que Eres Para Mi",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Derroche De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Cuando Una Lagrima Cae",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Si Estoy Contigo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Deus",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Mi Fiesta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (8).png",
+songname:"Tu Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-08/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Prefiero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"La Fruta Prohibida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Dime",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"¿Qué Eres Para Mí?",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Si Yo Te Dejo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Me Robaste El Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Amigos",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Tan Lejos, Tan Cerca",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (9).png",
+songname:"Te Vengo A Decir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-09/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Conocerte Más",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Manos En Alto",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Lenguaje De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Dije Adiós",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Tuyo Soy",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Deseo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Es El Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Elí",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Me Veo Y Te Veo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Eco",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (10).png",
+songname:"Mil Palabritas",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-10/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Soy Valiente",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Perdóname",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"El Sonido Del Silencio",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Enséñame A Amar",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Mi Valiente Guerrero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Derroche De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"El Alfarero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Viejo Mío",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (11).png",
+songname:"Tu Amistad Me Hace Bien",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-11/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Vives Tú Y Vivo Yo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Este Muerto No Llevo Más.",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Entregarme Todo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Bajo El Sol",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Regreso A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"No Tiene Prisa",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Este Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Suave Voz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Bendita Mujercita.",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (12).png",
+songname:"Soy Quien Soy.",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-12/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Lenguaje De Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Me Veo Y Te Veo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Te Alabaré",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Regreso A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Este Muerto No Llevo Más",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Vives Tú Vivo Yo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Soy Quien Soy",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Eli",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Entregarme Todo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Bajo El Sol",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"No Tiene Prisa",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Amor Eterno",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (13).png",
+songname:"Al Taller Del Maestro",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-13/13.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Soy Soldado",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Tú Tan Mío",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Hoy",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Tú Mi Existir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Duele El Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Yo Tierra, Tú Semilla",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Vuelve Vida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Cara A Cara",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Vivir El Cielo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (14).png",
+songname:"Hoy",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-14/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Mas Que Ayer",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Tu Planeta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"La Fruta Prohibida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Te Estoy Esperando",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Eres Mi Sol",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Sueno De Morir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Come On",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Junto A Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Te Quiero",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Cuidare De Ti",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/10.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Busco",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/11.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Su Dulce Voz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/12.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Me Robaste El Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/13.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"El Sonido Del Silencio",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/14.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Como El Color De La Sangre",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/15.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Te Puedo Sentir",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/16.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Tu Amor Y Mi Amor",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/17.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Tu Poeta",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/18.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Dímelo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/19.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Tu Eres",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/20.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Dios Creo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/21.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (15).png",
+songname:"Me Dijo",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-15/22.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Allí Está Él",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/01.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Su Dulce Voz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/02.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Mi Vida",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/03.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Nada Más Quien Piensas",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/04.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Vuelve Pronto",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/05.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Me Robaste El Corazón",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/06.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Tiempo De La Cruz",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/07.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Jesús",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/08.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Vendrá",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/09.mp3",
+artistname:"Alex Campos",},
+
+{thumbnail:"alex_campos (16).png",
+songname:"Por Siempre",
+audio:"https://archive.org/download/mc.musica.a-c/alex-campos/Album-16/10.mp3",
+artistname:"Alex Campos",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
