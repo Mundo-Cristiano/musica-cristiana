@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [{thumbnail:"julio_melgar (1).png",
+songname:"Introducción",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/01.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"No Más",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/02.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Viviré Para Alabarte",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/03.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Santo",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/04.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Espíritu Santo",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/05.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Aleluya",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/06.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Danzando",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/07.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Sublime Gracia",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/08.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Sublime Gracia",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/09.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Vengo A Adorarte",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/10.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"El Poder De Tu Presencia",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/11.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Rio Poderoso",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/12.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Soy Un Altar",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/13.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Creo En Ti",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/14.mp3",
+artistname:"Julio Melgar",},
+
+{thumbnail:"julio_melgar (1).png",
+songname:"Incomparable Amor",
+audio:"https://archive.org/download/mc.musica.j/julio-melgar/Album-01/15.mp3",
+artistname:"Julio Melgar",},
+];
+    </script>
+
+<script src="mc-script.js"></script>

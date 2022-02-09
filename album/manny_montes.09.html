@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+    <body>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"manny_montes (9).png",
+songname:"Los Inmortales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"El Inmortal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Cuidao Con El Perro",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Alza La Mano",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Que Aguanten",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Ellos Inventan",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Como Sale",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Lo Que Traemos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"En La Cruz",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Aguanta La Presión",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Interlude - Mensajes",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Contra Mi",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vamo A Alabarlo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Andamos Con El Rey",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Métele Dembow",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Tírate",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"De Que Vale",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Sube El Volumen",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Quienes Somos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Esto Es Pa Gozarse",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Mi Bendición",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/21.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vamos A Darle",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/22.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Vida Con Propósito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/23.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"No Puedo Seguir",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/24.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Alaba",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/25.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"De Lo Vil",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/26.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Somos Reales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/27.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Los Renacidos",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/28.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Solo En El",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/29.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (9).png",
+songname:"Los Inmortales",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-09/30.mp3",
+artistname:"Manny Montes",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
