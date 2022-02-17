@@ -7,6 +7,11 @@ body {
 	height: 100vh;
 	font-family: "Raleway";
 }
+.m3u {
+	text-decoration: none;
+	color: transparent;
+	font-size: 50px;
+}
 .player {
 	position: absolute;
 	top: 50%;
