@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mc-style.css">
+        <body><a class="m3u" href="listas-m3u/manny-montes-13.m3u">...</a>
+        <div class="player">
+            <div class="main">
+                <audio></audio>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+                <div class="seekbar">
+                    <input type="range">
+                </div>
+                <div class="details">
+                    <h2></h2>
+                    <p></p>
+                </div>
+                <div class="controls">
+                    <div class="prev-control">
+                        <i class="fa fa-backward"></i>
+                    </div>
+                    <div class="play-pause-control paused">
+                        <i class="fa fa-play"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+                    <div class="next-control">
+                        <i class="fa fa-forward"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="player-list">
+                <div class="toggle-list">
+                    <i class="fa fa-angle-up"></i>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="list">
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        let songList = [
+{thumbnail:"manny_montes (13).png",
+songname:"United Kingdom",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/01.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Heme Aquí",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/02.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Sigue Corriendo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/03.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Poco A Poco",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/04.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Mambo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/05.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Un Solo Cuerpo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/06.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"La Salida",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/07.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Vamos a Adorar",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/08.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Lirica Letal",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/09.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Vida Dura",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/10.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Desecha",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/11.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Un Solo Gobierno",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/12.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"David Y Goliat",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/13.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Rankeao",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/14.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Algo Nuevo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/15.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Te Necesito",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/16.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"De Otra Manera",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/17.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Atención",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/18.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Mi Voz Se Escucha",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/19.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Váyase Con Eso",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/20.mp3",
+artistname:"Manny Montes",},
+
+{thumbnail:"manny_montes (13).png",
+songname:"Jesús Me Salvo",
+audio:"https://archive.org/download/mc.musica.m/manny-montes/Album-13/21.mp3",
+artistname:"Manny Montes",},
+];
+    </script>
+
+<script src="mc-script.js"></script>
