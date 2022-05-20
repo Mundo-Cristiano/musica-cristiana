@@ -20,8 +20,8 @@ body {
 	width: 320px;
 	height: 480px;
 	overflow: hidden;
-	border: solid #222 0.5px;
-	border-radius: 3%;
+	border: solid rgb(0, 0, 0) 0.5px;
+	border-radius: 2%;
 }
 .player .main {
 	width: 100%;
