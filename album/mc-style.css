@@ -20,7 +20,7 @@ body {
 	width: 320px;
 	height: 480px;
 	overflow: hidden;
-	border: solid lightskyblue 0.5px;
+	border: solid #0099FF 0.5px;
 	border-radius: 3%;
 }
 .player .main {
@@ -40,7 +40,7 @@ body {
 	width: 100%;
 	height: 4px;
 	outline: none;
-	background: lightskyblue;
+	background: #00CCCC;
 	overflow: hidden;
 }
 .player .main .seekbar input[type="range"]::-webkit-slider-thumb {
@@ -100,7 +100,7 @@ body {
 	text-align: center;
 	height: 20px;
 	line-height: 20px;
-	background: lightskyblue;
+	background: #0099FF;
 }
 .player .player-list .toggle-list i.fa {
 	color: rgb(0, 0, 0);
