@@ -153,7 +153,7 @@ body {
 	background: #222;
 }
 .player .player-list::-webkit-scrollbar-thumb {
-	background: purple;
+	background: #0099FF;
 }
 .player.activeSongList .player-list {
 	margin-top: -350px;
