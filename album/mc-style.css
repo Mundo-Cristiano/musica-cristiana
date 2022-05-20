@@ -103,7 +103,7 @@ body {
 	background: rgb(0, 0, 0);
 }
 .player .player-list .toggle-list i.fa {
-	color: #eee;
+	color: #333333;
 	font-size: 25px;
 	font-weight: 600;
 }
